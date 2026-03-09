@@ -3,7 +3,7 @@ import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import Layout from '~/layouts/PageLayout.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import { getPermalink } from '~/utils/permalinks';
+import { getPermalink, getAsset } from '~/utils/permalinks';
 
 export async function getStaticPaths() {
   const posts = await getCollection('post');
@@ -96,7 +96,7 @@ const metadata = {
       post.data.image && (
         <div class="mb-12 rounded-lg overflow-hidden">
           <img
-            src={post.data.image}
+            src={getAsset(post.data.image)}
             alt={post.data.title}
             class="w-full h-auto object-cover"
             loading="eager"

@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import { getPermalink } from '~/utils/permalinks';
+import { getPermalink, getAsset } from '~/utils/permalinks';
 
 const allPosts = await getCollection('post');
 const publishedPosts = allPosts
@@ -82,7 +82,7 @@ function formatDate(date: Date | undefined) {
                 {post.data.image && (
                   <a href={getPermalink(`/blog/${post.id}/`)} class="block aspect-video overflow-hidden">
                     <img
-                      src={post.data.image}
+                      src={getAsset(post.data.image)}
                       alt={post.data.title}
                       class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                       loading="lazy"
