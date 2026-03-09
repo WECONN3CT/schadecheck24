@@ -1,0 +1,439 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Features3 from '~/components/widgets/Features3.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import { testimonials } from '~/data/testimonials';
+
+const metadata = {
+  title: 'Schadensgutachten Kfz-Sachverständiger Remscheid',
+  description: 'Professionelles Kfz-Schadensgutachten nach Unfall. Rechtssichere Schadenskalkulation für Versicherung. Schnell vor Ort in Remscheid, Wuppertal, Solingen & NRW.',
+  canonical: 'https://schaden-check24.de/schadensgutachten/',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-b from-white to-gray-50 dark:from-slate-900 dark:to-slate-800 py-8 sm:py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-4xl mx-auto">
+        <p class="text-sm sm:text-base text-brand dark:text-blue-200 font-bold tracking-wide uppercase mb-2">
+          Nach dem Unfall
+        </p>
+        <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-brand dark:text-white leading-tight px-2">
+          Schadensgutachten für Ihr Kfz
+        </h1>
+        <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 px-2">
+          Nach einem Unfallschaden benötigen Sie ein detailliertes Schadensgutachten zur Regulierung mit der Versicherung. Wir erstellen eine rechtssichere, umfassende Schadenskalkulation – unabhängig und transparent.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="tel:+4921917932020" class="btn-primary-brand inline-flex items-center justify-center py-3 px-6 text-lg rounded-xl font-bold">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+            Jetzt anrufen
+          </a>
+          <a href="https://wa.me/4921917932020?text=Hallo%2C%20ich%20hatte%20einen%20Unfall%20und%20benötige%20ein%20Schadensgutachten." target="_blank" rel="noopener noreferrer" class="btn-whatsapp inline-flex items-center justify-center py-3 px-6 text-lg rounded-xl font-bold">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vorteile -->
+  <Features3
+    title="Warum ein professionelles Schadensgutachten?"
+    subtitle="Ihre Vorteile bei der Schadenregulierung"
+    columns={2}
+    items={[
+      {
+        title: 'Maximale Erstattung',
+        description: 'Vollständige Erfassung aller Schadenpositionen für optimale Regulierung.',
+        icon: 'tabler:currency-euro',
+      },
+      {
+        title: 'Rechtssicherheit',
+        description: 'Gerichtsfest und von Versicherungen anerkannt.',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: 'Unabhängig',
+        description: 'Neutrale Bewertung ohne Bindung an Versicherungen oder Werkstätten.',
+        icon: 'tabler:scale',
+      },
+      {
+        title: 'Bei Haftpflicht kostenfrei',
+        description: 'Bei Haftpflichtschäden für Sie kostenfrei – die gegnerische Versicherung zahlt.',
+        icon: 'tabler:receipt-off',
+      },
+    ]}
+  />
+
+  <!-- Testimonials -->
+  <Testimonials
+    title="Das sagen unsere Kunden"
+    testimonials={testimonials}
+  />
+
+  <!-- Was beinhaltet das Schadensgutachten? -->
+  <section class="bg-neutral py-16 md:py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12 animate-on-scroll slide-up">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-brand dark:text-white mb-4 px-2 leading-tight">
+          Was beinhaltet das Schadensgutachten?
+        </h2>
+        <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          Umfassende Dokumentation für vollständige Schadenregulierung
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg animate-on-scroll slide-up delay-100">
+          <div class="w-14 h-14 bg-gradient-to-br from-[#7DD3E8] to-[#003366] rounded-xl flex items-center justify-center mb-4">
+            <span class="text-3xl">📸</span>
+          </div>
+          <h3 class="text-lg font-bold mb-2 text-brand dark:text-white">Fotodokumentation</h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            Umfassende Bildaufnahmen aller Schadenstellen aus verschiedenen Perspektiven
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg animate-on-scroll slide-up delay-200">
+          <div class="w-14 h-14 bg-gradient-to-br from-[#003366] to-[#7DD3E8] rounded-xl flex items-center justify-center mb-4">
+            <span class="text-3xl">🔍</span>
+          </div>
+          <h3 class="text-lg font-bold mb-2 text-brand dark:text-white">Schadensanalyse</h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            Detaillierte Bewertung aller Beschädigungen an Karosserie, Technik und Ausstattung
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg animate-on-scroll slide-up delay-300">
+          <div class="w-14 h-14 bg-gradient-to-br from-[#7DD3E8] to-[#003366] rounded-xl flex items-center justify-center mb-4">
+            <span class="text-3xl">💶</span>
+          </div>
+          <h3 class="text-lg font-bold mb-2 text-brand dark:text-white">Reparaturkalkulation</h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            Präzise Kostenschätzung für alle erforderlichen Reparaturarbeiten
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg animate-on-scroll slide-up delay-100">
+          <div class="w-14 h-14 bg-gradient-to-br from-[#003366] to-[#7DD3E8] rounded-xl flex items-center justify-center mb-4">
+            <span class="text-3xl">📊</span>
+          </div>
+          <h3 class="text-lg font-bold mb-2 text-brand dark:text-white">Wertermittlung</h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            Wiederbeschaffungswert, Restwert und Wertminderung nach dem Schaden
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg animate-on-scroll slide-up delay-200">
+          <div class="w-14 h-14 bg-gradient-to-br from-[#7DD3E8] to-[#003366] rounded-xl flex items-center justify-center mb-4">
+            <span class="text-3xl">⚙️</span>
+          </div>
+          <h3 class="text-lg font-bold mb-2 text-brand dark:text-white">Technische Daten</h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            Fahrzeugdaten, Kilometerstand, Ausstattung und Vorschäden
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg animate-on-scroll slide-up delay-300">
+          <div class="w-14 h-14 bg-gradient-to-br from-[#003366] to-[#7DD3E8] rounded-xl flex items-center justify-center mb-4">
+            <span class="text-3xl">📝</span>
+          </div>
+          <h3 class="text-lg font-bold mb-2 text-brand dark:text-white">Schriftliches Gutachten</h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            Vollständige schriftliche Ausfertigung mit Stempel und Unterschrift
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Zusätzliche Leistungen -->
+  <section class="py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12 animate-on-scroll slide-up">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-brand dark:text-white mb-4 px-2 leading-tight">
+          Weitere Leistungen im Schadensgutachten
+        </h2>
+      </div>
+
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 md:p-12 shadow-xl animate-on-scroll slide-up">
+        <ul class="space-y-4 text-gray-600 dark:text-gray-400">
+          <li class="flex items-start">
+            <svg class="w-6 h-6 text-[#7DD3E8] mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span><strong class="text-brand dark:text-white">Wertminderung:</strong> Ermittlung der merkantilen Wertminderung durch den Unfallschaden</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-6 h-6 text-[#7DD3E8] mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span><strong class="text-brand dark:text-white">Nutzungsausfall:</strong> Berechnung der Ausfallzeit für Ersatzfahrzeugkosten</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-6 h-6 text-[#7DD3E8] mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span><strong class="text-brand dark:text-white">Restwertermittlung:</strong> Bei wirtschaftlichem Totalschaden – Verkaufswert des beschädigten Fahrzeugs</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-6 h-6 text-[#7DD3E8] mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span><strong class="text-brand dark:text-white">Vorschäden:</strong> Prüfung und Dokumentation bereits bestehender Schäden</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-6 h-6 text-[#7DD3E8] mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span><strong class="text-brand dark:text-white">Reparaturfreigabe:</strong> Technische Beratung zur Reparatur oder Wiederbeschaffung</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ablauf -->
+  <section class="bg-neutral py-16 md:py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12 animate-on-scroll slide-up">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-brand dark:text-white mb-4 px-2 leading-tight">
+          So läuft es ab
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center animate-on-scroll slide-right delay-100">
+          <div class="w-20 h-20 bg-gradient-to-br from-[#7DD3E8] to-[#003366] rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">
+            1
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-brand dark:text-white">Kontakt & Termin</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Sie melden den Schaden – wir vereinbaren einen Termin vor Ort innerhalb von 24-48 Stunden.
+          </p>
+        </div>
+
+        <div class="text-center animate-on-scroll slide-up delay-200">
+          <div class="w-20 h-20 bg-gradient-to-br from-[#003366] to-[#7DD3E8] rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">
+            2
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-brand dark:text-white">Besichtigung & Begutachtung</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Wir kommen zu Ihnen, begutachten das Fahrzeug vor Ort und erstellen die Fotodokumentation.
+          </p>
+        </div>
+
+        <div class="text-center animate-on-scroll slide-left delay-300">
+          <div class="w-20 h-20 bg-gradient-to-br from-[#7DD3E8] to-[#003366] rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">
+            3
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-brand dark:text-white">Gutachten & Regulierung</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Sie erhalten das fertige Gutachten – wir unterstützen Sie bei der Schadenregulierung.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Regional-Bezug -->
+  <section class="py-16 md:py-20 bg-white dark:bg-slate-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-brand dark:text-white mb-4">
+          Schadensgutachten in Remscheid und Umgebung
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400">
+          Professionelle Schadenbewertung im Bergischen Land
+        </p>
+      </div>
+
+      <div class="prose prose-lg dark:prose-invert mx-auto">
+        <p>
+          Als Kfz-Sachverständiger in <strong>Remscheid</strong> erstellen wir umfassende Schadensgutachten für alle Arten von Fahrzeugschäden.
+          Unser Einsatzgebiet erstreckt sich über das <strong>Bergische Land</strong>, einschließlich <strong>Wuppertal</strong>, <strong>Solingen</strong>,
+          <strong>Leverkusen</strong> und weitere Städte in <strong>Nordrhein-Westfalen</strong>.
+        </p>
+
+        <p>
+          Von unserem Standort in <strong>Remscheid, Kölner Str. 121</strong>, sind wir schnell bei Ihnen vor Ort – egal ob es sich um
+          versteckte Mängel, Vorschäden oder technische Streitfälle handelt. Wir dokumentieren jeden Schaden neutral und gerichtsfest,
+          damit Sie klare Fakten für Ihre Entscheidungen haben.
+        </p>
+
+        <p>
+          Unsere neutrale Position als unabhängige Sachverständige und unsere Erfahrung in der Region machen uns zum idealen Partner
+          für Privatpersonen, Gewerbetreibende und Anwaltskanzleien. Wir schaffen Klarheit bei technischen Streitfällen und
+          sichern Ihre Interessen rechtssicher ab.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs - Schadensgutachten -->
+  <section class="py-16 md:py-20 bg-gradient-to-b from-gray-50 to-white dark:from-slate-800 dark:to-slate-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12">
+        <p class="text-sm font-semibold text-highlight uppercase tracking-wider mb-2">FAQ</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-brand dark:text-white mb-4">
+          Häufig gestellte Fragen zum Schadensgutachten
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300">
+          <summary class="flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <h3 class="text-xl font-bold text-brand dark:text-white">Wann lohnt sich ein Schadensgutachten?</h3>
+            <svg class="w-6 h-6 text-highlight group-open:rotate-90 transition-transform duration-300 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-600 dark:text-gray-400">
+            <p>Ein Schadensgutachten ist sinnvoll bei: versteckten Mängeln nach dem Kauf, technischen Streitfällen mit Werkstätten, unklaren Vorschäden, Beweissicherung für rechtliche Auseinandersetzungen oder wenn Sie eine neutrale, fachliche Einschätzung benötigen.</p>
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300">
+          <summary class="flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <h3 class="text-xl font-bold text-brand dark:text-white">Was wird im Gutachten dokumentiert?</h3>
+            <svg class="w-6 h-6 text-highlight group-open:rotate-90 transition-transform duration-300 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-600 dark:text-gray-400">
+            <p>Wir dokumentieren alle sichtbaren und versteckten Schäden detailliert, erstellen eine umfassende Fotodokumentation, bewerten die technische Schwere der Mängel, schätzen Reparaturkosten und geben eine neutrale Einschätzung zur Schadensursache ab.</p>
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300">
+          <summary class="flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <h3 class="text-xl font-bold text-brand dark:text-white">Wie schnell kann begutachtet werden?</h3>
+            <svg class="w-6 h-6 text-highlight group-open:rotate-90 transition-transform duration-300 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-600 dark:text-gray-400">
+            <p>Wir sind in der Regel innerhalb von 24-48 Stunden bei Ihnen vor Ort. Bei dringenden Fällen, etwa bei laufenden Fristen, können wir auch kurzfristiger einen Termin arrangieren. Das fertige Gutachten erhalten Sie innerhalb von 3-5 Werktagen.</p>
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300">
+          <summary class="flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <h3 class="text-xl font-bold text-brand dark:text-white">Gilt das Gutachten vor Gericht?</h3>
+            <svg class="w-6 h-6 text-highlight group-open:rotate-90 transition-transform duration-300 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-600 dark:text-gray-400">
+            <p>Ja, unsere Schadensgutachten sind gerichtsfest und erfüllen alle rechtlichen Anforderungen. Sie können als Beweismittel in Gerichtsverfahren verwendet werden und werden von Gerichten, Versicherungen und Anwälten anerkannt.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <CallToAction
+    title="Schadensgutachten jetzt beauftragen"
+    subtitle="Schnell, unabhängig und rechtssicher – maximale Erstattung für Ihren Schaden."
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Jetzt anrufen: +49 2191 7932020',
+        href: 'tel:+4921917932020',
+        icon: 'tabler:phone',
+      },
+      {
+        variant: 'secondary',
+        text: 'WhatsApp schreiben',
+        href: 'https://wa.me/4921917932020?text=Hallo%2C%20ich%20hatte%20einen%20Unfall%20und%20benötige%20ein%20Schadensgutachten.',
+        target: '_blank',
+        icon: 'tabler:brand-whatsapp',
+      },
+    ]}
+  />
+
+  <!-- Zurück zu Leistungen -->
+  <section class="py-8 bg-white dark:bg-slate-900">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+      <a
+        href="/leistungen/"
+        class="inline-flex items-center text-brand hover:text-[#7DD3E8] font-semibold transition-colors group"
+      >
+        <svg class="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Zurück zu allen Leistungen
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Performance-Optimized Scroll Animations */
+  .animate-on-scroll {
+    opacity: 0;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform;
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) !important;
+  }
+
+  .slide-up {
+    transform: translate3d(0, 40px, 0);
+  }
+  .slide-left {
+    transform: translate3d(60px, 0, 0);
+  }
+  .slide-right {
+    transform: translate3d(-60px, 0, 0);
+  }
+
+  .delay-100 {
+    transition-delay: 0.1s;
+  }
+  .delay-200 {
+    transition-delay: 0.2s;
+  }
+  .delay-300 {
+    transition-delay: 0.3s;
+  }
+</style>
+
+<script>
+  // Intersection Observer for Scroll Animations
+  if ('IntersectionObserver' in window) {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -100px 0px',
+      threshold: 0.1,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const animatedElements = document.querySelectorAll('.animate-on-scroll');
+      animatedElements.forEach((el) => observer.observe(el));
+    });
+
+    document.addEventListener('astro:page-load', () => {
+      const animatedElements = document.querySelectorAll('.animate-on-scroll');
+      animatedElements.forEach((el) => observer.observe(el));
+    });
+  }
+</script>

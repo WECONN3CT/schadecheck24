@@ -1,0 +1,917 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import FloatingHero from '~/components/widgets/FloatingHero.astro';
+import Features from '~/components/widgets/Features.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import BeforeAfterSlider from '~/components/widgets/BeforeAfterSlider.astro';
+import { Image } from 'astro:assets';
+import { testimonials } from '~/data/testimonials';
+
+import beforeImage from '~/assets/images/slider - crashed to fixed/unfallschaden.webp';
+import afterImage from '~/assets/images/slider - crashed to fixed/repariert.webp';
+import gutachtenImage from '~/assets/images/008.webp';
+import ansprücheImage from '~/assets/images/Fahrzeuginspektion.webp';
+import logoImage from '~/assets/images/logo.webp';
+
+const metadata = {
+  title: 'KFZ Gutachter Remscheid & KFZ Sachverständiger Unfallgutachten bei SchadenCheck',
+  description:
+    'KFZ Gutachter & Sachverständiger Remscheid. Kostenloses Unfallgutachten bei Haftpflichtschäden. Vor-Ort-Begutachtung in 24-48h. Unabhängig & rechtssicher.',
+  canonical: 'https://schaden-check24.de/',
+  ignoreTitleTemplate: true,
+  openGraph: {
+    type: 'website',
+    url: 'https://schaden-check24.de/',
+    title: 'KFZ Gutachter Remscheid & KFZ Sachverständiger Unfallgutachten bei SchadenCheck',
+    description:
+      'KFZ Gutachter Remscheid & KFZ Sachverständiger Unfallgutachten bei SchadenCheck – Kostenloses Unfallgutachten in 24h',
+    siteName: 'KFZ Gutachter Remscheid & KFZ Sachverständiger Unfallgutachten bei SchadenCheck',
+    locale: 'de_DE',
+  },
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Floating Hero Section ******************* -->
+
+  <FloatingHero
+    title="<span class='text-highlight'>Kfz Gutachter Remscheid</span> – Ihr Sachverständiger für Unfallgutachten"
+    subtitle="Jetzt Schaden melden – Begutachtung innerhalb von 24 Stunden · Unabhängig · Rechtssicher"
+  />
+
+  <!-- Combined Steps + Slider Section *************** -->
+  <section class="py-16 md:py-20 relative overflow-hidden dark:from-slate-900 dark:via-slate-800 dark:to-slate-700" style="background: linear-gradient(to bottom, #020f14 0%, #020f14 8%, #ffffff 34%, #ffffff 60%, #ffffff 75%, #ffffff 100%);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <!-- Section Header -->
+      <div class="text-center mb-16 md:mb-20 pt-8 md:pt-12">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-highlight dark:text-white animate-on-scroll slide-up">
+          So einfach geht's – in 3 Schritten
+        </h2>
+        <p class="text-lg text-gray-900 dark:text-white/80 max-w-3xl mx-auto animate-on-scroll slide-up delay-100">
+          Dein KFZ Gutachten - Von der Schadensmeldung bis zur vollständigen Regulierung – wir begleiten Sie durch den gesamten Prozess.
+        </p>
+      </div>
+
+      <!-- Grid: Steps + Slider -->
+      <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <!-- Left: Steps with connecting line -->
+        <div class="relative">
+          <!-- Vertical connecting line (connects icons, cut at top and bottom) -->
+          <div class="absolute left-6 w-0.5 bg-highlight/30 dark:bg-gray-700 hidden sm:block" style="top: 3rem; height: calc(100% - 9rem);"></div>
+
+          <div class="space-y-8">
+            <!-- Step 1 -->
+            <div class="flex gap-4 relative animate-on-scroll slide-right">
+              <div class="flex-shrink-0 relative z-10">
+                <div class="flex items-center justify-center w-12 h-12 rounded-full bg-brand text-white">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                  </svg>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-xl md:text-2xl font-bold mb-2 text-brand dark:text-white">
+                  1. Schaden melden
+                </h3>
+                <p class="text-gray-900 dark:text-white/70">
+                  Rufen Sie uns an, schreiben Sie per WhatsApp oder nutzen Sie unser Online-Formular. Wir sind sofort für Sie da.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="flex gap-4 relative animate-on-scroll slide-right delay-100">
+              <div class="flex-shrink-0 relative z-10">
+                <div class="flex items-center justify-center w-12 h-12 rounded-full bg-brand text-white">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-xl md:text-2xl font-bold mb-2 text-brand dark:text-white">
+                  2. Vor-Ort-Begutachtung
+                </h3>
+                <p class="text-gray-900 dark:text-white/70">
+                  Unsere Sachverständigen kommen zu Ihnen – ob zuhause, am Arbeitsplatz oder in der Werkstatt. Wir dokumentieren den Schaden professionell und erstellen Fotos.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="flex gap-4 relative animate-on-scroll slide-right delay-200">
+              <div class="flex-shrink-0 relative z-10">
+                <div class="flex items-center justify-center w-12 h-12 rounded-full bg-brand text-white">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                    <path d="M5 8v-3a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5"></path>
+                    <circle cx="6" cy="14" r="3"></circle>
+                    <path d="M4.5 17l-1.5 5l3 -1.5l3 1.5l-1.5 -5"></path>
+                  </svg>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-xl md:text-2xl font-bold mb-2 text-brand dark:text-white">
+                  3. Gutachten & Regulierung
+                </h3>
+                <p class="text-gray-900 dark:text-white/70">
+                  Sie erhalten Ihr detailliertes Gutachten. Wir kümmern uns um die Kommunikation mit der Versicherung und unsere Partneranwälte setzen Ihre Ansprüche durch.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Before/After Slider -->
+        <div class="order-first md:order-last animate-on-scroll slide-left">
+          <BeforeAfterSlider
+            beforeImage={beforeImage}
+            afterImage={afterImage}
+            beforeAlt="Unfallschaden am Fahrzeug mit Kfz Gutachter Remscheid und KFZ Sachverständiger Remscheid für Unfallgutachten"
+            afterAlt="Repariertes Fahrzeug nach Gutachten vom Kfz Gutachter Remscheid und KFZ Sachverständiger Remscheid für Wertgutachten"
+          />
+          <p class="text-center text-sm text-gray-900 dark:text-white/60 mt-4">
+            Von der Schadensdokumentation bis zur erfolgreichen Reparatur
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Widget *************** -->
+
+  <Testimonials
+    title="Das sagen unsere Kunden"
+    testimonials={testimonials}
+  />
+
+  <!-- Ansprüche nach einem Unfall *************** -->
+  <section class="py-16 md:py-20 bg-white dark:bg-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <!-- Section Header -->
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-brand dark:text-white animate-on-scroll slide-up">
+          Ihre Ansprüche nach einem Unfall – das steht Ihnen wirklich zu
+        </h2>
+      </div>
+
+      <!-- Grid: Image left, Cards right -->
+      <div class="grid lg:grid-cols-12 gap-8 items-start">
+        <!-- Left: Image -->
+        <div class="lg:col-span-5 animate-on-scroll slide-right">
+          <div class="sticky top-8">
+            <Image
+              src={ansprücheImage}
+              alt="Kfz Gutachter Remscheid bei der professionellen Schadensbewertung für Unfallgutachten und Wertgutachten"
+              class="rounded-2xl shadow-2xl w-full h-auto"
+              widths={[400, 600, 800]}
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <!-- Right: Cards -->
+        <div class="lg:col-span-7 grid gap-4">
+        <!-- Card 1: Mobil bleiben -->
+        <div
+          class="group bg-gradient-to-br from-[#003366] to-[#002952] dark:from-[#003366] dark:to-[#001a33] border-2 border-[#003366] hover:border-[#7DD3E8] rounded-xl p-4 md:p-5 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-on-scroll slide-left"
+        >
+          <div class="flex items-start gap-3">
+            <div class="flex-shrink-0">
+              <svg
+                class="w-6 h-6 text-highlight"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-lg md:text-xl font-bold text-white mb-2">
+                Mobil bleiben – auch ohne eigenes Fahrzeug
+              </h3>
+              <p class="text-sm text-white/90">
+                Ob Mietwagen oder Nutzungsausfall: Sie haben Anspruch darauf, mobil zu bleiben, solange Ihr Fahrzeug
+                nicht genutzt werden kann. Die Kosten trägt die Versicherung des Verursachers.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Wertverlust -->
+        <div
+          class="group bg-gradient-to-br from-[#003366] to-[#002952] dark:from-[#003366] dark:to-[#001a33] border-2 border-[#003366] hover:border-[#7DD3E8] rounded-xl p-4 md:p-5 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-on-scroll slide-left delay-100"
+        >
+          <div class="flex items-start gap-3">
+            <div class="flex-shrink-0">
+              <svg
+                class="w-6 h-6 text-highlight"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-lg md:text-xl font-bold text-white mb-2">
+                Ausgleich für den Wertverlust Ihres Autos
+              </h3>
+              <p class="text-sm text-white/90">
+                Selbst nach einer fachgerechten Reparatur bleibt ein Unfallschaden wertmindernd. Diese Differenz wird
+                Ihnen als <a href="/blog/wertminderung-nach-unfall/" class="underline hover:text-highlight">merkantile Wertminderung</a> ausgezahlt – und zwar zusätzlich zur Reparatur.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Reparatur oder Auszahlung -->
+        <div
+          class="group bg-gradient-to-br from-[#003366] to-[#002952] dark:from-[#003366] dark:to-[#001a33] border-2 border-[#003366] hover:border-[#7DD3E8] rounded-xl p-4 md:p-5 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-on-scroll slide-left delay-200"
+        >
+          <div class="flex items-start gap-3">
+            <div class="flex-shrink-0">
+              <svg
+                class="w-6 h-6 text-highlight"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-lg md:text-xl font-bold text-white mb-2">
+                Sie entscheiden: Reparatur oder Auszahlung
+              </h3>
+              <p class="text-sm text-white/90">
+                Niemand kann Sie zur Reparatur zwingen. Auf Wunsch lassen Sie sich den errechneten Schaden einfach
+                auszahlen („fiktive Abrechnung") – flexibel, unkompliziert, rechtssicher.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Abschleppkosten -->
+        <div
+          class="group bg-gradient-to-br from-[#003366] to-[#002952] dark:from-[#003366] dark:to-[#001a33] border-2 border-[#003366] hover:border-[#7DD3E8] rounded-xl p-4 md:p-5 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-on-scroll slide-left delay-300"
+        >
+          <div class="flex items-start gap-3">
+            <div class="flex-shrink-0">
+              <svg
+                class="w-6 h-6 text-highlight"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-lg md:text-xl font-bold text-white mb-2">
+                Abschleppkosten? Kein Thema.
+              </h3>
+              <p class="text-sm text-white/90">
+                Wenn Ihr Fahrzeug nicht mehr fahrbereit war, werden die Kosten für den Abschleppdienst von der
+                gegnerischen Versicherung vollständig übernommen.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5: Gutachten kostenlos -->
+        <div
+          class="group bg-gradient-to-br from-[#7DD3E8] to-[#5ec4de] border-2 border-[#7DD3E8] hover:border-[#003366] rounded-xl p-4 md:p-5 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-on-scroll slide-left delay-400"
+        >
+          <div class="flex items-start gap-3">
+            <div class="flex-shrink-0">
+              <svg
+                class="w-6 h-6 text-brand"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg md:text-xl font-bold text-brand mb-2">
+                Ihr Gutachten – für Sie kostenlos
+              </h3>
+              <p class="text-sm text-brand/90">
+                Bei einem unverschuldeten Unfall trägt die gegnerische Versicherung die Kosten für das Gutachten. Sie
+                zahlen keinen Cent – wir kümmern uns um alles.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Buttons (separate, außerhalb der Box) -->
+        <div class="grid sm:grid-cols-2 gap-4 mt-2 animate-on-scroll slide-up delay-500">
+          <a
+            href="tel:+4921917932020"
+            class="btn-primary-brand inline-flex items-center justify-center py-3.5 sm:py-4 px-6 rounded-xl font-bold text-base transition-all hover:shadow-2xl hover:-translate-y-1 min-h-[52px] sm:min-h-[56px]"
+            data-analytics="phone_click"
+          >
+            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+              ></path>
+            </svg>
+            Jetzt anrufen
+          </a>
+          <a
+            href="https://wa.me/4921917932020?text=Hallo%2C%20ich%20m%C3%B6chte%20ein%20kostenloses%20Gutachten%20anfragen."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-whatsapp inline-flex items-center justify-center py-3.5 sm:py-4 px-6 rounded-xl font-bold text-base transition-all hover:shadow-2xl hover:-translate-y-1 min-h-[52px] sm:min-h-[56px]"
+            data-analytics="whatsapp_click"
+          >
+            <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+              ></path>
+            </svg>
+            WhatsApp
+          </a>
+        </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- USP-Leiste (Ihre Vorteile) *************** -->
+  <section class="py-12 md:py-16 bg-gradient-to-b from-white via-[#E5F6F9] to-[#7DD3E8]/30 dark:from-slate-900 dark:via-slate-800 dark:to-slate-700 relative overflow-hidden">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+      <p class="text-center text-brand dark:text-highlight font-semibold text-sm uppercase tracking-wider mb-6 animate-on-scroll slide-up">Ihre Vorteile</p>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+        <!-- Vorteil 1: Kostenlos -->
+        <div class="flex flex-col items-center text-center group animate-on-scroll slide-up delay-100">
+          <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-brand/5 dark:bg-white/10 backdrop-blur-sm flex items-center justify-center mb-4 group-hover:bg-brand/10 dark:group-hover:bg-white/20 transition-all duration-300 group-hover:scale-110">
+            <svg class="w-8 h-8 md:w-10 md:h-10 text-brand dark:text-highlight" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              <line x1="4" y1="4" x2="20" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
+            </svg>
+          </div>
+          <h3 class="text-brand dark:text-highlight font-bold text-lg md:text-xl mb-2">Kostenlos*</h3>
+          <p class="text-gray-600 dark:text-highlight/70 text-sm">Bei Haftpflichtschäden für Sie kostenfrei</p>
+        </div>
+
+        <!-- Vorteil 2: Schnell vor Ort -->
+        <div class="flex flex-col items-center text-center group animate-on-scroll slide-up delay-200">
+          <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-brand/5 dark:bg-white/10 backdrop-blur-sm flex items-center justify-center mb-4 group-hover:bg-brand/10 dark:group-hover:bg-white/20 transition-all duration-300 group-hover:scale-110">
+            <svg class="w-8 h-8 md:w-10 md:h-10 text-brand dark:text-highlight" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-brand dark:text-highlight font-bold text-lg md:text-xl mb-2">Schnell vor Ort</h3>
+          <p class="text-gray-600 dark:text-highlight/70 text-sm">Begutachtung innerhalb von 24-48 Stunden</p>
+        </div>
+
+        <!-- Vorteil 3: Unabhängig -->
+        <div class="flex flex-col items-center text-center group animate-on-scroll slide-up delay-300">
+          <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-brand/5 dark:bg-white/10 backdrop-blur-sm flex items-center justify-center mb-4 group-hover:bg-brand/10 dark:group-hover:bg-white/20 transition-all duration-300 group-hover:scale-110">
+            <svg class="w-8 h-8 md:w-10 md:h-10 text-brand dark:text-highlight" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+            </svg>
+          </div>
+          <h3 class="text-brand dark:text-highlight font-bold text-lg md:text-xl mb-2">Unabhängig</h3>
+          <p class="text-gray-600 dark:text-highlight/70 text-sm">Neutrale Sachverständige für objektive Gutachten</p>
+        </div>
+
+        <!-- Vorteil 4: Rechtssicher -->
+        <div class="flex flex-col items-center text-center group animate-on-scroll slide-up delay-400">
+          <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-brand/5 dark:bg-white/10 backdrop-blur-sm flex items-center justify-center mb-4 group-hover:bg-brand/10 dark:group-hover:bg-white/20 transition-all duration-300 group-hover:scale-110">
+            <svg class="w-8 h-8 md:w-10 md:h-10 text-brand dark:text-highlight" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
+            </svg>
+          </div>
+          <h3 class="text-brand dark:text-highlight font-bold text-lg md:text-xl mb-2">Rechtssicher</h3>
+          <p class="text-gray-600 dark:text-highlight/70 text-sm">Erfahrene Partneranwälte setzen Ihre Ansprüche durch</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Was steht in einem KFZ Unfallgutachten? ****************** -->
+  <section class="bg-gradient-to-b from-[#7DD3E8]/30 via-[#7DD3E8]/20 to-[#7DD3E8]/10 dark:from-slate-800 dark:via-slate-800 dark:to-slate-700">
+    <div class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-7xl">
+      <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <!-- Text Content -->
+        <div class="animate-on-scroll slide-right">
+          <h2 class="text-3xl md:text-4xl font-bold text-brand dark:text-white mb-6">
+            Was steht in einem KFZ-Unfallgutachten?
+          </h2>
+          <p class="text-lg text-gray-700 dark:text-gray-300 mb-8">
+            Ein professionelles Kfz-Gutachten liefert eine umfassende Grundlage für deine Ansprüche gegenüber der
+            Versicherung. Hier siehst du, was ein vollständiges <a href="/kfz-unfallgutachten/" class="text-brand underline hover:text-highlight">Unfallgutachten</a> von SchadenCheck beinhaltet:
+          </p>
+
+          <!-- Feature List -->
+          <div class="space-y-6">
+            <!-- Fahrzeugdaten -->
+            <div class="flex gap-4">
+              <div class="flex-shrink-0">
+                <span class="text-2xl">🔹</span>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-brand dark:text-white mb-2">Fahrzeugdaten</h3>
+                <p class="text-gray-700 dark:text-gray-300">
+                  Alle relevanten Angaben zum Auto – wie Hersteller, Modell, Erstzulassung, Laufleistung sowie
+                  Sonderausstattung oder wertsteigernde Extras – werden detailliert erfasst.
+                </p>
+              </div>
+            </div>
+
+            <!-- Schadensanalyse -->
+            <div class="flex gap-4">
+              <div class="flex-shrink-0">
+                <span class="text-2xl">🔹</span>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-brand dark:text-white mb-2">Schadensanalyse</h3>
+                <p class="text-gray-700 dark:text-gray-300">
+                  Das Gutachten beschreibt exakt, welche Bauteile betroffen sind und wie stark der Schaden ausfällt –
+                  klar nachvollziehbar und technisch präzise dokumentiert.
+                </p>
+              </div>
+            </div>
+
+            <!-- Bilddokumentation -->
+            <div class="flex gap-4">
+              <div class="flex-shrink-0">
+                <span class="text-2xl">🔹</span>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-brand dark:text-white mb-2">Bilddokumentation zur Beweissicherung</h3>
+                <p class="text-gray-700 dark:text-gray-300">
+                  Professionelle Fotos belegen den gesamten Schaden sowie den Fahrzeugzustand vor und nach dem Unfall.
+                  Diese Bilder dienen als Beweismittel für Versicherung oder Gericht.
+                </p>
+              </div>
+            </div>
+
+            <!-- Vorschäden -->
+            <div class="flex gap-4">
+              <div class="flex-shrink-0">
+                <span class="text-2xl">🔹</span>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-brand dark:text-white mb-2">Berücksichtigung vorhandener Vorschäden</h3>
+                <p class="text-gray-700 dark:text-gray-300">
+                  Frühere Schäden oder Reparaturen werden transparent aufgeführt und bei der Bewertung objektiv
+                  berücksichtigt – für ein faires, nachvollziehbares Ergebnis.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image -->
+        <div class="order-first md:order-last animate-on-scroll slide-left">
+          <Image
+            src={gutachtenImage}
+            alt="Professionelle Schadensmessung mit Messschieber vom Kfz Gutachter Remscheid und KFZ Sachverständiger Remscheid"
+            class="rounded-lg shadow-2xl w-full h-auto"
+            widths={[400, 768, 1024]}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Buttons nach Steps Section -->
+  <section class="py-12 bg-white dark:bg-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white animate-on-scroll slide-up">
+          Jetzt Kontakt aufnehmen
+        </h2>
+        <p class="text-lg text-muted mb-8 max-w-2xl mx-auto animate-on-scroll slide-up delay-100">
+          Wir sind für Sie da – schnell, unkompliziert und kostenfrei bei Haftpflichtschäden.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4 animate-on-scroll slide-up delay-200">
+          <a
+            href="tel:+4921917932020"
+            class="btn-primary-brand inline-flex items-center py-3.5 sm:py-4 px-6 rounded-xl min-h-[52px] sm:min-h-[56px]"
+            data-analytics="phone_click"
+          >
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+              ></path>
+            </svg>
+            Jetzt Soforthilfe
+          </a>
+          <a
+            href="https://wa.me/4921917932020?text=Hallo%2C%20ich%20hatte%20einen%20Unfall.%0AName%3A%20%0APLZ%2FOrt%3A%20%0AErreichbar%20um%3A%20%0AUnfallzeit%3A%20%0AKurzbeschreibung%3A%20"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-secondary-brand inline-flex items-center py-3.5 sm:py-4 px-6 rounded-xl min-h-[52px] sm:min-h-[56px]"
+            data-analytics="whatsapp_click"
+          >
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+              ></path>
+            </svg>
+            WhatsApp starten
+          </a>
+          <a
+            href="/schaden-melden/"
+            class="btn-primary-brand inline-flex items-center py-3.5 sm:py-4 px-6 rounded-xl min-h-[52px] sm:min-h-[56px]"
+            data-analytics="form_click"
+          >
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              ></path>
+            </svg>
+            Schaden online melden
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs Accordion ******************* -->
+  <section id="faq" class="py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <p class="text-sm font-semibold text-highlight uppercase tracking-wider mb-2 animate-on-scroll slide-up">FAQ</p>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 dark:text-white animate-on-scroll slide-up delay-100">
+          Häufig gestellte Fragen
+        </h2>
+        <p class="text-lg text-muted animate-on-scroll slide-up delay-200">
+          Hier finden Sie Antworten auf die wichtigsten Fragen rund um Kfz-Gutachten und Unfallabwicklung.
+        </p>
+      </div>
+
+      <!-- Accordion Items -->
+      <div class="space-y-4 faq-accordion">
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-500 animate-on-scroll slide-up">
+          <summary class="flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Was kostet ein Kfz-Gutachten?</h3>
+            <svg class="w-6 h-6 text-highlight group-open:rotate-90 transition-transform duration-500 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-muted">
+            Bei Haftpflichtschäden ist das Gutachten für Sie kostenfrei – die gegnerische Versicherung übernimmt die Kosten. Bei Kaskoschäden oder selbstverschuldeten Unfällen beraten wir Sie gerne individuell zu den Kosten.
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-500">
+          <summary class="flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Wie schnell kann ich einen Termin bekommen?</h3>
+            <svg class="w-6 h-6 text-highlight group-open:rotate-90 transition-transform duration-500 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-muted">
+            Wir sind schnell für Sie da! In der Regel können wir innerhalb von 24-48 Stunden einen Termin zur Vor-Ort-Begutachtung vereinbaren. Bei Notfällen auch kurzfristiger.
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-500">
+          <summary class="flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Brauche ich bei jedem Unfall ein Gutachten?</h3>
+            <svg class="w-6 h-6 text-highlight group-open:rotate-90 transition-transform duration-500 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-muted">
+            Bei Bagatellschäden unter ca. 750 € reicht oft ein Kostenvoranschlag. Bei höheren Schäden oder wenn Unklarheiten bestehen, ist ein Gutachten sinnvoll und Ihr gutes Recht als Geschädigter.
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-500">
+          <summary class="flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Kann ich die Werkstatt frei wählen?</h3>
+            <svg class="w-6 h-6 text-highlight group-open:rotate-90 transition-transform duration-500 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-muted">
+            Ja, als Geschädigter haben Sie freie Werkstattwahl. Die gegnerische Versicherung darf Sie nicht zu einer bestimmten Werkstatt zwingen. Wir beraten Sie gerne bei der Wahl.
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-500">
+          <summary class="flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Was ist, wenn die Versicherung nicht zahlen will?</h3>
+            <svg class="w-6 h-6 text-highlight group-open:rotate-90 transition-transform duration-500 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-muted">
+            Genau dafür haben wir erfahrene Partneranwälte. Wir setzen Ihre Ansprüche rechtssicher durch und kümmern uns um die gesamte Kommunikation mit der Versicherung.
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-500">
+          <summary class="flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Gilt das Gutachten auch vor Gericht?</h3>
+            <svg class="w-6 h-6 text-highlight group-open:rotate-90 transition-transform duration-500 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-muted">
+            Ja, unsere Gutachten sind gerichtsverwertbar und werden von Gerichten und Versicherungen anerkannt. Unsere Sachverständigen sind öffentlich bestellt und vereidigt oder haben eine gleichwertige Qualifikation.
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-500">
+          <summary class="flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Was passiert bei einem Kaskoschaden?</h3>
+            <svg class="w-6 h-6 text-highlight group-open:rotate-90 transition-transform duration-500 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-muted">
+            Auch bei Kaskoschäden erstellen wir professionelle Gutachten. Hier sollten Sie vorab mit Ihrer Versicherung klären, ob ein Gutachten erforderlich ist oder ein Kostenvoranschlag ausreicht.
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-500">
+          <summary class="flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Brauche ich einen Anwalt nach einem Unfall?</h3>
+            <svg class="w-6 h-6 text-highlight group-open:rotate-90 transition-transform duration-500 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-muted">
+            Bei unverschuldeten Unfällen ist ein Anwalt oft sinnvoll, um Ihre Rechte optimal durchzusetzen – besonders bei Personenschäden, Schmerzensgeld oder wenn die Versicherung nicht kooperiert. Die Kosten trägt die gegnerische Versicherung.
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-500">
+          <summary class="flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Wie lange dauert die Gutachtenerstellung?</h3>
+            <svg class="w-6 h-6 text-highlight group-open:rotate-90 transition-transform duration-500 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-muted">
+            Nach der Besichtigung erhalten Sie Ihr ausführliches Gutachten in der Regel innerhalb von 2-5 Werktagen. Bei Eilfällen können wir auch schneller liefern.
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-500">
+          <summary class="flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">In welchem Gebiet sind Sie tätig?</h3>
+            <svg class="w-6 h-6 text-highlight group-open:rotate-90 transition-transform duration-500 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-muted">
+            Unser Hauptsitz ist in Remscheid (Kölner Str. 121). Wir sind im gesamten Bergischen Land aktiv: Remscheid, Solingen, Wuppertal und Umgebung. Sprechen Sie uns an – wir finden eine Lösung.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Abschluss-CTA-Banner *********** -->
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Jetzt anrufen:<br>+49 2191 7932020',
+        href: 'tel:+4921917932020',
+        icon: 'tabler:phone',
+        class: 'btn-primary-brand',
+      },
+      {
+        variant: 'primary',
+        text: 'WhatsApp',
+        href: 'https://wa.me/4921917932020?text=Hallo%2C%20ich%20hatte%20einen%20Unfall.%0AName%3A%20%0APLZ%2FOrt%3A%20%0AErreichbar%20um%3A%20%0AUnfallzeit%3A%20%0AKurzbeschreibung%3A%20',
+        target: '_blank',
+        icon: 'tabler:brand-whatsapp',
+        class: 'btn-whatsapp',
+      },
+    ]}
+  >
+    <Fragment slot="title">Jetzt kostenfrei beraten lassen</Fragment>
+
+    <Fragment slot="subtitle">
+      24/7 erreichbar für Ihre Unfallabwicklung. Rufen Sie an oder schreiben Sie uns per WhatsApp – wir sind für Sie
+      da.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-neutral dark:bg-slate-800"></div>
+    </Fragment>
+  </CallToAction>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    name: 'KFZ Gutachter Remscheid & KFZ Sachverständiger Unfallgutachten bei SchadenCheck',
+    description: 'Kfz-Gutachten und Unfallabwicklung in Remscheid und Umgebung',
+    url: 'https://schaden-check24.de',
+    telephone: '+4921917932020',
+    email: 'info@schaden-check24.de',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Kölner Str. 121',
+      addressLocality: 'Remscheid',
+      postalCode: '42897',
+      addressCountry: 'DE',
+    },
+    areaServed: {
+      '@type': 'GeoCircle',
+      geoMidpoint: {
+        '@type': 'GeoCoordinates',
+        latitude: 51.18,
+        longitude: 7.19,
+      },
+    },
+    priceRange: '$$',
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Was kostet ein Kfz-Gutachten?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Bei Haftpflichtschäden ist das Gutachten für Sie kostenfrei – die gegnerische Versicherung übernimmt die Kosten.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Wie schnell kann ich einen Termin bekommen?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'In der Regel können wir innerhalb von 24-48 Stunden einen Termin zur Vor-Ort-Begutachtung vereinbaren.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Brauche ich bei jedem Unfall ein Gutachten?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Bei Bagatellschäden unter ca. 750 € reicht oft ein Kostenvoranschlag. Bei höheren Schäden ist ein Gutachten sinnvoll.',
+        },
+      },
+    ],
+  })} />
+</Layout>
+
+<style>
+  /* Smooth Accordion Animation (Performance-optimized with grid) */
+  .faq-accordion details > div {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s ease-in-out;
+    opacity: 0;
+    transition: grid-template-rows 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  }
+
+  .faq-accordion details[open] > div {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  .faq-accordion details > div > * {
+    overflow: hidden;
+  }
+
+  /* Arrow rotation */
+  .faq-accordion details summary svg {
+    transition: transform 0.5s ease-in-out;
+  }
+
+  /* Performance-Optimized Scroll Animations */
+  .animate-on-scroll {
+    opacity: 0;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform;
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) !important;
+  }
+
+  /* Animation Variants */
+  .slide-up {
+    transform: translate3d(0, 40px, 0);
+  }
+
+  .slide-down {
+    transform: translate3d(0, -40px, 0);
+  }
+
+  .slide-left {
+    transform: translate3d(60px, 0, 0);
+  }
+
+  .slide-right {
+    transform: translate3d(-60px, 0, 0);
+  }
+
+  .fade-in {
+    transform: translate3d(0, 0, 0);
+  }
+
+  /* Stagger delays for sequential animations */
+  .delay-100 { transition-delay: 0.1s; }
+  .delay-200 { transition-delay: 0.2s; }
+  .delay-300 { transition-delay: 0.3s; }
+  .delay-400 { transition-delay: 0.4s; }
+  .delay-500 { transition-delay: 0.5s; }
+
+  /* Prevent text cursor on all text elements */
+  h1, h2, h3, h4, h5, h6, p, span, div, section, article, li, label {
+    cursor: default !important;
+  }
+</style>
+
+<script>
+  // Lightweight Intersection Observer for scroll animations
+  function initAnimations() {
+    if ('IntersectionObserver' in window) {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -100px 0px', // Trigger slightly before element enters viewport
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            // Unobserve after animation to improve performance
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      // Observe all elements with animation classes
+      const animatedElements = document.querySelectorAll('.animate-on-scroll');
+      animatedElements.forEach(el => observer.observe(el));
+    } else {
+      // Fallback for browsers without IntersectionObserver
+      const animatedElements = document.querySelectorAll('.animate-on-scroll');
+      animatedElements.forEach(el => el.classList.add('visible'));
+    }
+  }
+
+  // Run on initial page load
+  document.addEventListener('DOMContentLoaded', initAnimations);
+
+  // Run on client-side navigation (Astro View Transitions)
+  document.addEventListener('astro:page-load', initAnimations);
+</script>

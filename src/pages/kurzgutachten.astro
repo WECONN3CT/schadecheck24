@@ -1,0 +1,394 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import { testimonials } from '~/data/testimonials';
+
+const metadata = {
+  title:
+    'Kurzgutachten Remscheid | KFZ Gutachter Remscheid & KFZ Sachverständiger Unfallgutachten bei SchadenCheck',
+  description:
+    'Kurzgutachten Remscheid – schnelle Kosteneinschätzung für kleinere Schäden & Parkrempler. KFZ Gutachter vor Ort in Remscheid, Solingen & Wuppertal.',
+  canonical: 'https://schaden-check24.de/kurzgutachten/',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-b from-white to-gray-50 dark:from-slate-900 dark:to-slate-800 py-8 sm:py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-4xl mx-auto">
+        <p class="text-sm sm:text-base text-brand dark:text-blue-200 font-bold tracking-wide uppercase mb-2">
+          Schnell & Kompakt
+        </p>
+        <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-brand dark:text-white leading-tight px-2">
+          Kurzgutachten & Kosteneinschätzung
+        </h1>
+        <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 px-2">
+          Bei kleineren Schäden oder Parkremplern ist oft kein umfangreiches Gutachten nötig. Unser Kurzgutachten liefert Ihnen eine kompakte, rechtssichere Kosteneinschätzung – schnell und unkompliziert.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="tel:+4921917932020"
+            class="btn-primary-brand inline-flex items-center justify-center py-3 px-6 text-lg rounded-xl font-bold"
+          >
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+            </svg>
+            Jetzt anrufen
+          </a>
+          <a
+            href="https://wa.me/4921917932020?text=Hallo%2C%20ich%20benötige%20ein%20Kurzgutachten."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-whatsapp inline-flex items-center justify-center py-3 px-6 text-lg rounded-xl font-bold"
+          >
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
+            </svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vorteile -->
+  <Features3
+    title="Vorteile eines Kurzgutachtens"
+    subtitle="Warum ein Kurzgutachten die richtige Wahl ist"
+    columns={2}
+    items={[
+      {
+        title: 'Schnelle Erstellung',
+        description: 'Kompakte Dokumentation ohne lange Wartezeiten – ideal für kleinere Schäden.',
+        icon: 'tabler:clock',
+      },
+      {
+        title: 'Kostengünstig',
+        description: 'Bei Haftpflichtschäden für Sie kostenfrei. Auch privat zu fairen Konditionen.',
+        icon: 'tabler:coin',
+      },
+      {
+        title: 'Rechtssicher',
+        description: 'Fundierte Basis für Schadenregulierung mit Versicherungen.',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: 'Vor Ort Service',
+        description: 'Wir kommen zu Ihnen – in Remscheid, Wuppertal, Solingen und ganz NRW.',
+        icon: 'tabler:map-pin',
+      },
+    ]}
+  />
+
+  <!-- Testimonials -->
+  <Testimonials
+    title="Das sagen unsere Kunden"
+    testimonials={testimonials}
+  />
+
+  <!-- Wann macht ein Kurzgutachten Sinn? -->
+  <section class="bg-neutral py-16 md:py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12 animate-on-scroll slide-up">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-brand dark:text-white mb-4 px-2 leading-tight">
+          Wann ist ein Kurzgutachten sinnvoll?
+        </h2>
+        <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          Perfekt für überschaubare Schadensfälle
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg animate-on-scroll slide-right">
+          <div class="w-16 h-16 bg-gradient-to-br from-[#7DD3E8] to-[#003366] rounded-xl flex items-center justify-center mb-6">
+            <span class="text-4xl">✅</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-brand dark:text-white">Ideal bei:</h3>
+          <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+            <li class="flex items-start">
+              <svg class="w-6 h-6 text-[#7DD3E8] mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Parkschäden & Parkremplern</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-6 h-6 text-[#7DD3E8] mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Kleineren Lackschäden</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-6 h-6 text-[#7DD3E8] mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Blechschäden ohne Strukturschaden</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-6 h-6 text-[#7DD3E8] mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Schäden unter 1.000 EUR</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg animate-on-scroll slide-left">
+          <div class="w-16 h-16 bg-gradient-to-br from-[#003366] to-[#7DD3E8] rounded-xl flex items-center justify-center mb-6">
+            <span class="text-4xl">ℹ️</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-brand dark:text-white">Was beinhaltet es?</h3>
+          <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+            <li class="flex items-start">
+              <svg class="w-6 h-6 text-[#7DD3E8] mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <schadensdokumentation>Schadensdokumentation mit Fotos</schadensdokumentation>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-6 h-6 text-[#7DD3E8] mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Kosteneinschätzung der Reparatur</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-6 h-6 text-[#7DD3E8] mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Auflistung der Schadenpositionen</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-6 h-6 text-[#7DD3E8] mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Kompakte schriftliche Ausfertigung</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Regional-Bezug -->
+  <section class="py-16 md:py-20 bg-white dark:bg-slate-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-brand dark:text-white mb-4">
+          Kurzgutachten in Remscheid und Umgebung
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400">
+          Schnelle Schadensbewertung im Bergischen Land
+        </p>
+      </div>
+
+      <div class="prose prose-lg dark:prose-invert mx-auto">
+        <p>
+          Bei kleineren Schäden wie Parkremplern oder Lackschäden benötigen Sie nicht immer ein umfangreiches Vollgutachten. Als Kfz-Sachverständiger in <strong>Remscheid</strong> bieten wir Ihnen kompakte Kurzgutachten, die eine rechtssichere Grundlage für die Schadenregulierung schaffen – ohne unnötigen Aufwand und zu fairen Konditionen.
+        </p>
+
+        <p>
+          Im <strong>Bergischen Land</strong> – von <strong>Wuppertal</strong> über <strong>Solingen</strong> bis nach <strong>Leverkusen</strong> – sind wir Ihr schneller Partner bei kleineren Schadensfällen. Unsere Kurzgutachten dokumentieren den Schaden, schätzen die Reparaturkosten zuverlässig ein und werden von Versicherungen problemlos akzeptiert. Die kompakte Form spart Zeit und Kosten, ohne auf Qualität zu verzichten.
+        </p>
+
+        <p>
+          Wir kommen direkt zu Ihnen – ob nach Hause, zur Arbeit oder zu einem anderen Wunschort in <strong>Remscheid</strong> und ganz <strong>NRW</strong>. Die Begutachtung dauert meist nur 15-30 Minuten, und Sie erhalten Ihr Kurzgutachten oft noch am selben Tag. Bei unverschuldeten Unfällen ist das Kurzgutachten für Sie komplett kostenfrei – die gegnerische Versicherung übernimmt alle Kosten.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section class="py-16 md:py-20 bg-gradient-to-b from-gray-50 to-white dark:from-slate-800 dark:to-slate-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-brand dark:text-white mb-4">
+          Häufig gestellte Fragen
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400">
+          Alles Wichtige zum Kurzgutachten
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 overflow-hidden">
+          <summary class="flex justify-between items-center cursor-pointer px-6 py-4 font-semibold text-brand dark:text-white hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <span>Wann reicht ein Kurzgutachten aus?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-600 dark:text-gray-400">
+            <p>
+              Ein Kurzgutachten ist ideal für <strong>Bagatellschäden und kleinere Unfälle</strong> mit einem geschätzten Schaden unter <strong>1.000 Euro</strong>. Typische Fälle sind: <strong>Parkschäden</strong> (Kratzer, Dellen), <strong>Lackschäden</strong> ohne Strukturschaden, <strong>kleinere Blechschäden</strong>, oder wenn Sie nur eine <strong>schnelle Kosteneinschätzung</strong> benötigen. Bei größeren Schäden, Strukturschäden, Airbag-Auslösung oder Verdacht auf versteckte Schäden empfehlen wir ein Vollgutachten. Unsicher? Wir beraten Sie gerne kostenlos, welche Gutachtenart in Ihrem Fall am besten geeignet ist.
+            </p>
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 overflow-hidden">
+          <summary class="flex justify-between items-center cursor-pointer px-6 py-4 font-semibold text-brand dark:text-white hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <span>Was ist der Unterschied zu einem Vollgutachten?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-600 dark:text-gray-400">
+            <p>
+              Ein <strong>Kurzgutachten</strong> ist kompakter und schneller erstellt – es dokumentiert den Schaden mit Fotos, listet die Schadenpositionen auf und schätzt die Reparaturkosten ein. Es umfasst in der Regel <strong>2-4 Seiten</strong> und reicht für die Regulierung kleinerer Schäden aus. Ein <strong>Vollgutachten</strong> hingegen ist deutlich ausführlicher (10-30 Seiten) und beinhaltet zusätzlich: detaillierte Schadensbeschreibung, Wertminderungsberechnung, technische Analyse, Reparaturkalkulation nach Stundenverrechnungssätzen, und dient als gerichtsfeste Beweisgrundlage bei komplexeren Fällen oder höheren Schadenssummen.
+            </p>
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 overflow-hidden">
+          <summary class="flex justify-between items-center cursor-pointer px-6 py-4 font-semibold text-brand dark:text-white hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <span>Was kostet ein Kurzgutachten?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-600 dark:text-gray-400">
+            <p>
+              Bei einem <strong>unverschuldeten Unfall</strong> ist das Kurzgutachten für Sie <strong>komplett kostenfrei</strong> – die Haftpflichtversicherung des Unfallverursachers zahlt alle Kosten. Bei <strong>selbstverschuldeten Schäden</strong> oder wenn Sie den Schaden privat regulieren möchten, kostet ein Kurzgutachten in der Regel zwischen <strong>80 und 150 Euro</strong>, je nach Aufwand. Im Vergleich zum Vollgutachten (ab 500 Euro) ist das Kurzgutachten deutlich günstiger und bei kleineren Schäden völlig ausreichend. Wir erstellen Ihnen vorab gerne ein unverbindliches Angebot.
+            </p>
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 overflow-hidden">
+          <summary class="flex justify-between items-center cursor-pointer px-6 py-4 font-semibold text-brand dark:text-white hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <span>Akzeptieren Versicherungen ein Kurzgutachten?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-600 dark:text-gray-400">
+            <p>
+              Ja, Versicherungen akzeptieren Kurzgutachten bei <strong>Bagatellschäden und kleineren Schadensfällen</strong> problemlos. Die Haftpflichtversicherung des Unfallverursachers ist verpflichtet, die Kosten für ein Kurzgutachten zu übernehmen, wenn der Schaden entsprechend gering ist. Bei Schadenssummen <strong>unter 750-1.000 Euro</strong> ist ein Kurzgutachten in der Regel ausreichend. Wichtig: Das Gutachten muss von einem <strong>qualifizierten, unabhängigen Sachverständigen</strong> erstellt werden (nicht vom Versicherungsgutachter!). Sollte sich bei der Begutachtung herausstellen, dass der Schaden größer ist als zunächst angenommen, können wir das Kurzgutachten problemlos zu einem Vollgutachten erweitern.
+            </p>
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 overflow-hidden">
+          <summary class="flex justify-between items-center cursor-pointer px-6 py-4 font-semibold text-brand dark:text-white hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <span>Wie schnell bekomme ich das Kurzgutachten?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-600 dark:text-gray-400">
+            <p>
+              Die <strong>Begutachtung vor Ort</strong> dauert bei einem Kurzgutachten meist nur <strong>15-30 Minuten</strong>. Wir dokumentieren den Schaden, erstellen Fotos und erfassen alle Daten. Das <strong>fertige Kurzgutachten</strong> erhalten Sie in der Regel <strong>noch am selben Tag</strong> oder spätestens innerhalb von 24 Stunden – digital per E-Mail und auf Wunsch auch per Post. Einen <strong>Termin</strong> für die Begutachtung bekommen Sie meist schon am nächsten Werktag. Diese Schnelligkeit ist einer der größten Vorteile des Kurzgutachtens – Sie können zeitnah mit der Reparatur beginnen.
+            </p>
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 overflow-hidden">
+          <summary class="flex justify-between items-center cursor-pointer px-6 py-4 font-semibold text-brand dark:text-white hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <span>Kann ein Kurzgutachten nachträglich zu einem Vollgutachten erweitert werden?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-600 dark:text-gray-400">
+            <p>
+              Ja, das ist möglich! Wenn sich bei der Begutachtung oder während der Reparatur herausstellt, dass der Schaden <strong>größer ist als zunächst angenommen</strong>, können wir das Kurzgutachten zu einem <strong>Vollgutachten erweitern</strong>. Die bereits erfassten Daten und Fotos werden dabei verwendet, sodass kein doppelter Aufwand entsteht. Dies kommt vor, wenn z.B. versteckte Schäden entdeckt werden oder die Reparaturkosten höher ausfallen als geschätzt. Auch wenn Sie feststellen, dass Sie für rechtliche Auseinandersetzungen ein ausführlicheres Gutachten benötigen, ist eine Erweiterung jederzeit möglich. Die Differenz wird entsprechend berechnet.
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <CallToAction
+    title="Kurzgutachten jetzt anfordern"
+    subtitle="Schnell, unkompliziert und rechtssicher – wir sind für Sie da."
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Jetzt anrufen: +49 2191 7932020',
+        href: 'tel:+4921917932020',
+        icon: 'tabler:phone',
+      },
+      {
+        variant: 'secondary',
+        text: 'WhatsApp schreiben',
+        href: 'https://wa.me/4921917932020?text=Hallo%2C%20ich%20benötige%20ein%20Kurzgutachten.',
+        target: '_blank',
+        icon: 'tabler:brand-whatsapp',
+      },
+    ]}
+  />
+
+  <!-- Zurück zu Leistungen -->
+  <section class="py-8 bg-white dark:bg-slate-900">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+      <a
+        href="/leistungen/"
+        class="inline-flex items-center text-brand hover:text-[#7DD3E8] font-semibold transition-colors group"
+      >
+        <svg class="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Zurück zu allen Leistungen
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Performance-Optimized Scroll Animations */
+  .animate-on-scroll {
+    opacity: 0;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform;
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) !important;
+  }
+
+  .slide-up {
+    transform: translate3d(0, 40px, 0);
+  }
+  .slide-down {
+    transform: translate3d(0, -40px, 0);
+  }
+  .slide-left {
+    transform: translate3d(60px, 0, 0);
+  }
+  .slide-right {
+    transform: translate3d(-60px, 0, 0);
+  }
+</style>
+
+<script>
+  // Intersection Observer for Scroll Animations
+  if ('IntersectionObserver' in window) {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -100px 0px',
+      threshold: 0.1,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const animatedElements = document.querySelectorAll('.animate-on-scroll');
+      animatedElements.forEach((el) => observer.observe(el));
+    });
+
+    document.addEventListener('astro:page-load', () => {
+      const animatedElements = document.querySelectorAll('.animate-on-scroll');
+      animatedElements.forEach((el) => observer.observe(el));
+    });
+  }
+</script>

@@ -1,0 +1,595 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Headline from '~/components/ui/Headline.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import { testimonials } from '~/data/testimonials';
+
+const metadata = {
+  title: 'Schaden online melden | KFZ Gutachter Remscheid & KFZ Sachverständiger Unfallgutachten bei SchadenCheck',
+  description:
+    'Kfz-Schaden online melden bei SchadenCheck Remscheid. Wir melden uns innerhalb von 24h und vereinbaren einen Termin zur Begutachtung.',
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <div class="mb-8 md:mx-auto md:mb-12 text-center max-w-3xl">
+      <p class="text-base text-secondary dark:text-blue-200 font-bold tracking-wide uppercase mb-4">Schnelle Hilfe</p>
+      <h1 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading text-heading mb-4">
+        Schaden online melden
+      </h1>
+      <p class="mt-4 text-muted text-xl">Füllen Sie das Formular aus und wir melden uns schnellstmöglich bei Ihnen – in der Regel innerhalb von 24 Stunden.</p>
+    </div>
+
+    <div class="bg-white dark:bg-slate-800 rounded-lg shadow-lg p-6 md:p-8">
+      <form id="schaden-form" class="space-y-6">
+        <!-- Name -->
+        <div>
+          <label for="name" class="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+            Name <span class="text-red-600">*</span>
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            aria-required="true"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand dark:bg-slate-900 dark:border-gray-600 dark:text-white"
+            placeholder="Ihr vollständiger Name"
+          />
+        </div>
+
+        <!-- Telefon -->
+        <div>
+          <label for="telefon" class="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+            Telefon <span class="text-red-600">*</span>
+          </label>
+          <input
+            type="tel"
+            id="telefon"
+            name="telefon"
+            required
+            inputmode="numeric"
+            pattern="[0-9+\s\-\(\)]+"
+            aria-required="true"
+            aria-describedby="telefon-help"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand dark:bg-slate-900 dark:border-gray-600 dark:text-white"
+            placeholder="0152 12345678"
+          />
+          <p id="telefon-help" class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+            Nur Zahlen (z.B. 0152 12345678 oder +49 152 12345678)
+          </p>
+        </div>
+
+        <!-- PLZ/Ort -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="plz" class="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+              PLZ <span class="text-red-600">*</span>
+            </label>
+            <input
+              type="text"
+              id="plz"
+              name="plz"
+              required
+              pattern="[0-9]{5}"
+              aria-required="true"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand dark:bg-slate-900 dark:border-gray-600 dark:text-white"
+              placeholder="42897"
+            />
+          </div>
+          <div>
+            <label for="ort" class="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+              Ort <span class="text-red-600">*</span>
+            </label>
+            <input
+              type="text"
+              id="ort"
+              name="ort"
+              required
+              aria-required="true"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand dark:bg-slate-900 dark:border-gray-600 dark:text-white"
+              placeholder="Remscheid"
+            />
+          </div>
+        </div>
+
+        <!-- Kontaktweg -->
+        <div>
+          <label class="block text-sm font-semibold text-gray-900 dark:text-white mb-3">
+            Bevorzugter Kontaktweg
+          </label>
+          <div class="space-y-2">
+            <div class="flex items-center">
+              <input
+                type="radio"
+                id="kontakt-telefon"
+                name="kontaktweg"
+                value="telefon"
+                checked
+                class="w-4 h-4 text-brand focus:ring-brand focus:ring-2"
+              />
+              <label for="kontakt-telefon" class="ml-3 text-sm text-gray-700 dark:text-gray-300">Telefon</label>
+            </div>
+            <div class="flex items-center">
+              <input
+                type="radio"
+                id="kontakt-whatsapp"
+                name="kontaktweg"
+                value="whatsapp"
+                class="w-4 h-4 text-brand focus:ring-brand focus:ring-2"
+              />
+              <label for="kontakt-whatsapp" class="ml-3 text-sm text-gray-700 dark:text-gray-300">WhatsApp</label>
+            </div>
+            <div class="flex items-center">
+              <input
+                type="radio"
+                id="kontakt-email"
+                name="kontaktweg"
+                value="email"
+                class="w-4 h-4 text-brand focus:ring-brand focus:ring-2"
+              />
+              <label for="kontakt-email" class="ml-3 text-sm text-gray-700 dark:text-gray-300">E-Mail</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- E-Mail (conditional: required if email contact, otherwise optional) -->
+        <div id="email-field" class="hidden">
+          <label for="email" class="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+            E-Mail-Adresse <span id="email-required-indicator" class="text-red-600">*</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand dark:bg-slate-900 dark:border-gray-600 dark:text-white"
+            placeholder="ihre@email.de"
+          />
+        </div>
+
+        <!-- E-Mail für Bestätigung (optional, always visible) -->
+        <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+          <label for="email-bestaetigung" class="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+            📧 E-Mail für Bestätigung (optional)
+          </label>
+          <p class="text-xs text-gray-600 dark:text-gray-400 mb-3">
+            Wenn Sie eine Bestätigungs-E-Mail erhalten möchten, geben Sie hier Ihre E-Mail-Adresse ein.
+          </p>
+          <input
+            type="email"
+            id="email-bestaetigung"
+            name="email-bestaetigung"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-900 dark:border-gray-600 dark:text-white"
+            placeholder="ihre@email.de"
+          />
+        </div>
+
+        <!-- Schadensbeschreibung -->
+        <div>
+          <label for="beschreibung" class="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+            Kurzbeschreibung des Schadens (optional)
+          </label>
+          <textarea
+            id="beschreibung"
+            name="beschreibung"
+            rows="4"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand dark:bg-slate-900 dark:border-gray-600 dark:text-white"
+            placeholder="Bitte beschreiben Sie kurz, was passiert ist..."
+          ></textarea>
+        </div>
+
+        <!-- Datei-Upload (DEAKTIVIERT - für spätere Verwendung) -->
+        <!--
+        <div>
+          <label for="dateien" class="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+            Fotos hochladen (optional, max. 8 Dateien)
+          </label>
+          <input
+            type="file"
+            id="dateien"
+            name="dateien"
+            multiple
+            accept="image/jpeg,image/png,image/webp,application/pdf"
+            aria-describedby="dateien-help"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand dark:bg-slate-900 dark:border-gray-600 dark:text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-brand file:text-white hover:file:bg-secondary"
+          />
+          <p id="dateien-help" class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+            Akzeptierte Formate: JPG, PNG, WEBP, PDF (max. 8 Dateien)
+          </p>
+        </div>
+        -->
+
+        <!-- DSGVO Checkbox -->
+        <div class="flex items-start">
+          <div class="flex items-center h-5">
+            <input
+              type="checkbox"
+              id="dsgvo"
+              name="dsgvo"
+              required
+              aria-required="true"
+              aria-describedby="dsgvo-help"
+              class="w-4 h-4 text-brand bg-gray-100 border-gray-300 rounded focus:ring-brand focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            />
+          </div>
+          <div class="ml-3">
+            <label for="dsgvo" class="text-sm text-gray-700 dark:text-gray-300">
+              Ich habe die <a href="/datenschutz/" class="text-brand underline hover:text-secondary"
+                >Datenschutzerklärung</a
+              > gelesen und akzeptiere diese. <span class="text-red-600">*</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="pt-4">
+          <button
+            type="submit"
+            class="w-full btn-primary-brand text-lg py-4 px-6 rounded-lg font-semibold transition-all hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
+            data-analytics="form_submit"
+          >
+            Schaden jetzt melden
+          </button>
+        </div>
+
+        <!-- Success Message (hidden by default) -->
+        <div
+          id="success-message"
+          class="hidden p-6 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg"
+          role="alert"
+        >
+          <div class="flex items-start">
+            <svg
+              class="w-6 h-6 text-green-600 dark:text-green-400 mt-0.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <div class="ml-3">
+              <h3 class="text-lg font-semibold text-green-800 dark:text-green-200">Vielen Dank!</h3>
+              <p class="mt-2 text-sm text-green-700 dark:text-green-300">
+                Vielen Dank! Das Online-Formular wird gerade umgestellt. Bitte kontaktieren Sie uns direkt:
+              </p>
+              <p class="mt-2 text-sm text-green-700 dark:text-green-300">
+                <strong>Telefon:</strong> <a href="tel:+4921917932020" class="underline font-semibold">+49 2191 7932020</a>
+                <br><strong>WhatsApp:</strong> <a href="https://wa.me/4921917932020" class="underline font-semibold" target="_blank">Nachricht senden</a>
+                <br><strong>E-Mail:</strong> <a href="mailto:info@schaden-check24.de" class="underline font-semibold">info@schaden-check24.de</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Error Message (hidden by default) -->
+        <div
+          id="error-message"
+          class="hidden p-6 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg"
+          role="alert"
+        >
+          <div class="flex items-start">
+            <svg
+              class="w-6 h-6 text-red-600 dark:text-red-400 mt-0.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <div class="ml-3">
+              <h3 class="text-lg font-semibold text-red-800 dark:text-red-200">Fehler beim Senden</h3>
+              <p class="mt-2 text-sm text-red-700 dark:text-red-300">
+                Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt unter <a
+                  href="tel:+4921917932020"
+                  class="underline font-semibold">+49 2191 7932020</a
+                >.
+              </p>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Info Box -->
+    <div class="mt-8 p-6 bg-neutral dark:bg-slate-700 rounded-lg">
+      <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3">Alternative Kontaktmöglichkeiten</h3>
+      <div class="space-y-3 text-gray-700 dark:text-gray-300">
+        <p class="flex items-center">
+          <svg class="w-5 h-5 mr-3 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+            ></path>
+          </svg>
+          <a href="tel:+4921917932020" class="hover:text-brand font-semibold" data-analytics="phone_click"
+            >+49 2191 7932020</a
+          >
+        </p>
+        <p class="flex items-center">
+          <svg class="w-5 h-5 mr-3 text-brand" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+            ></path>
+          </svg>
+          <a
+            href="https://wa.me/4921917932020?text=Hallo%2C%20ich%20hatte%20einen%20Unfall.%0AName%3A%20%0APLZ%2FOrt%3A%20%0AErreichbar%20um%3A%20%0AUnfallzeit%3A%20%0AKurzbeschreibung%3A%20"
+            target="_blank"
+            class="hover:text-brand font-semibold"
+            data-analytics="whatsapp_click"
+          >
+            WhatsApp Nachricht senden
+          </a>
+        </p>
+        <p class="flex items-center">
+          <svg class="w-5 h-5 mr-3 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            ></path>
+          </svg>
+          <a href="mailto:info@schaden-check24.de" class="hover:text-brand font-semibold">info@schaden-check24.de</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <Testimonials
+    title="Das sagen unsere Kunden"
+    testimonials={testimonials}
+  />
+
+  <!-- FAQs -->
+  <section class="py-16 md:py-20 bg-gradient-to-b from-gray-50 to-white dark:from-slate-800 dark:to-slate-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-brand dark:text-white mb-4">
+          Häufig gestellte Fragen
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400">
+          Wichtige Informationen zur Schadenmeldung
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 overflow-hidden">
+          <summary class="flex justify-between items-center cursor-pointer px-6 py-4 font-semibold text-brand dark:text-white hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <span>Was passiert nach der Schadenmeldung?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-600 dark:text-gray-400">
+            <p>
+              Nach Eingang Ihrer Schadenmeldung erhalten Sie zunächst eine <strong>Bestätigungs-E-Mail</strong> (sofern Sie eine E-Mail-Adresse angegeben haben). Unser Team prüft dann Ihre Angaben und <strong>meldet sich innerhalb von 24 Stunden</strong> bei Ihnen auf Ihrem bevorzugten Kontaktweg (Telefon, WhatsApp oder E-Mail). Wir vereinbaren mit Ihnen einen <strong>Termin zur Begutachtung vor Ort</strong> – meist schon am nächsten oder übernächsten Werktag. Bei <strong>dringenden Unfällen</strong> können wir oft noch am selben Tag zu Ihnen kommen. Nach der Begutachtung erstellen wir das Gutachten und rechnen direkt mit der Versicherung ab.
+            </p>
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 overflow-hidden">
+          <summary class="flex justify-between items-center cursor-pointer px-6 py-4 font-semibold text-brand dark:text-white hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <span>Muss ich den Schaden sofort melden?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-600 dark:text-gray-400">
+            <p>
+              Grundsätzlich sollten Sie einen Schaden <strong>so schnell wie möglich melden</strong> – idealerweise <strong>direkt nach dem Unfall</strong>. Das hat mehrere Gründe: Bei Beweissicherung zählt jede Stunde (Spuren gehen verloren, Wetter ändert sich). Die Versicherung erwartet eine zeitnahe Meldung. Sie können schneller mit der Reparatur beginnen. Ihre Ansprüche lassen sich besser durchsetzen. <strong>Verjährungsfristen</strong> bei Schadenersatzansprüchen beachten (meist 3 Jahre). Aber: Auch wenn der Unfall schon ein paar Tage zurückliegt, können Sie den Schaden noch melden – je früher, desto besser. Rufen Sie uns einfach an!
+            </p>
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 overflow-hidden">
+          <summary class="flex justify-between items-center cursor-pointer px-6 py-4 font-semibold text-brand dark:text-white hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <span>Ist die Schadenmeldung kostenlos?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-600 dark:text-gray-400">
+            <p>
+              Ja, die <strong>Schadenmeldung und Erstberatung sind für Sie komplett kostenfrei</strong> – Sie gehen keinerlei Verpflichtungen ein. Bei einem <strong>unverschuldeten Unfall</strong> trägt die <strong>Haftpflichtversicherung des Unfallverursachers</strong> alle Kosten für das Gutachten – das bedeutet: <strong>Gutachten, Begutachtung und Abwicklung sind für Sie als Geschädigten komplett kostenfrei</strong>. Sie zahlen keinen Cent. Bei <strong>selbstverschuldeten Schäden</strong> oder wenn Sie den Schaden über Ihre eigene Kaskoversicherung regulieren, beraten wir Sie transparent über die Kosten und klären vorab, ob Ihre Versicherung die Gutachterkosten übernimmt.
+            </p>
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 overflow-hidden">
+          <summary class="flex justify-between items-center cursor-pointer px-6 py-4 font-semibold text-brand dark:text-white hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <span>Welche Informationen sollte ich bereithalten?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-600 dark:text-gray-400">
+            <p>
+              Für die Schadensmeldung benötigen Sie zunächst nur <strong>wenige Grundinformationen</strong>: Ihre <strong>Kontaktdaten</strong> (Name, Telefon, PLZ/Ort), <strong>kurze Beschreibung</strong> des Unfalls. Das genügt fürs Erste! Hilfreich, aber nicht zwingend erforderlich: <strong>Fahrzeugdaten</strong> (Kennzeichen, Marke, Modell), <strong>Unfallgegner-Daten</strong> (Name, Versicherung, Kennzeichen), <strong>Unfallzeit und -ort</strong>, <strong>Polizei-Aktenzeichen</strong> (falls vorhanden), <strong>Fotos vom Schaden</strong> (wenn bereits vorhanden). Keine Sorge: Wir erfassen alle Details gemeinsam mit Ihnen bei der Terminvereinbarung oder vor Ort bei der Begutachtung. Sie müssen nicht alles parat haben!
+            </p>
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 overflow-hidden">
+          <summary class="flex justify-between items-center cursor-pointer px-6 py-4 font-semibold text-brand dark:text-white hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+            <span>Kann ich mein Fahrzeug nach der Schadenmeldung noch bewegen/reparieren?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-600 dark:text-gray-400">
+            <p>
+              <strong>Fahren:</strong> Ja, Sie können Ihr Fahrzeug normal bewegen und nutzen – sofern es verkehrssicher ist. <strong>Wichtig:</strong> Achten Sie darauf, dass sich der Schaden nicht verändert oder verschlimmert. <strong>Reparatur:</strong> Warten Sie mit der Reparatur bis nach der Begutachtung! Die Begutachtung muss <strong>vor der Reparatur</strong> erfolgen, damit der Schaden dokumentiert werden kann. Ausnahme: Notreparaturen (z.B. provisorische Sicherung, Abschleppen) sind erlaubt, wenn es nicht anders geht. Wenn Sie das Fahrzeug dringend reparieren müssen, sprechen Sie uns sofort an – wir kommen oft noch am selben Tag zur Begutachtung. Nach der Begutachtung können Sie das Fahrzeug beliebig reparieren lassen.
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Form handling
+    const form = document.getElementById('schaden-form') as HTMLFormElement;
+    const successMessage = document.getElementById('success-message');
+    const errorMessage = document.getElementById('error-message');
+    const emailField = document.getElementById('email-field');
+
+    // Show/hide email field based on contact preference
+    const emailRadio = document.getElementById('kontakt-email') as HTMLInputElement;
+    const kontaktwegRadios = document.querySelectorAll('input[name="kontaktweg"]');
+
+    kontaktwegRadios.forEach((radio) => {
+      radio.addEventListener('change', (e) => {
+        const target = e.target as HTMLInputElement;
+        if (target.value === 'email') {
+          emailField?.classList.remove('hidden');
+          (document.getElementById('email') as HTMLInputElement).required = true;
+        } else {
+          emailField?.classList.add('hidden');
+          (document.getElementById('email') as HTMLInputElement).required = false;
+        }
+      });
+    });
+
+    // File upload validation (DEAKTIVIERT)
+    /*
+    const fileInput = document.getElementById('dateien') as HTMLInputElement;
+    fileInput?.addEventListener('change', (e) => {
+      const target = e.target as HTMLInputElement;
+      if (target.files && target.files.length > 8) {
+        alert('Bitte wählen Sie maximal 8 Dateien aus.');
+        target.value = '';
+        return;
+      }
+
+      // Check total file size (max 8MB total to stay within Cloudflare limits)
+      if (target.files) {
+        let totalSize = 0;
+        for (let i = 0; i < target.files.length; i++) {
+          totalSize += target.files[i].size;
+        }
+        const maxSize = 8 * 1024 * 1024; // 8MB in bytes (safe for Cloudflare Pages)
+        if (totalSize > maxSize) {
+          alert('Die Gesamtgröße aller Dateien darf 8MB nicht überschreiten. Bitte wählen Sie kleinere Dateien oder weniger Dateien.');
+          target.value = '';
+        }
+      }
+    });
+    */
+
+    // Form submission with Cloudflare Worker Backend
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Hide previous messages
+      successMessage?.classList.add('hidden');
+      errorMessage?.classList.add('hidden');
+
+      // Disable submit button (UX)
+      const submitButton = form.querySelector(
+        'button[type="submit"]'
+      ) as HTMLButtonElement;
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Wird gesendet...';
+      }
+
+      try {
+        // Collect form data
+        const formDataObj = new FormData(form);
+
+        // File uploads DEAKTIVIERT - für spätere Verwendung
+        /*
+        const files = fileInput?.files;
+        const attachments: Array<{ filename: string; content: string; type: string }> = [];
+
+        if (files && files.length > 0) {
+          if (submitButton) {
+            submitButton.textContent = 'Dateien werden verarbeitet...';
+          }
+
+          for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            try {
+              const base64 = await new Promise<string>((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => {
+                  const result = reader.result as string;
+                  const base64Content = result.split(',')[1];
+                  resolve(base64Content);
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+              });
+
+              attachments.push({
+                filename: file.name,
+                content: base64,
+                type: file.type,
+              });
+            } catch (fileError) {
+              console.error('Error processing file:', file.name, fileError);
+            }
+          }
+
+          if (submitButton) {
+            submitButton.textContent = 'Wird gesendet...';
+          }
+        }
+        */
+
+        const data = {
+          name: formDataObj.get('name'),
+          telefon: formDataObj.get('telefon'),
+          plz: formDataObj.get('plz'),
+          ort: formDataObj.get('ort'),
+          kontaktweg: formDataObj.get('kontaktweg'),
+          email: formDataObj.get('email'),
+          emailBestaetigung: formDataObj.get('email-bestaetigung'), // Optional confirmation email
+          beschreibung: formDataObj.get('beschreibung'),
+          dsgvo: formDataObj.get('dsgvo') === 'on',
+          // attachments: attachments.length > 0 ? attachments : undefined, // DEAKTIVIERT
+        };
+
+        // TODO: Formspree-Integration hier einbauen
+        // Aktuell deaktiviert - Nutzer wird auf Telefon/WhatsApp/E-Mail verwiesen
+        successMessage?.classList.remove('hidden');
+        form.reset();
+
+        // Reset button
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = 'Schaden jetzt melden';
+        }
+
+        successMessage?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        });
+      } catch (error) {
+        console.error('Network error:', error);
+
+        // Show error message
+        errorMessage?.classList.remove('hidden');
+
+        // Reset button
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = 'Schaden jetzt melden';
+        }
+
+        errorMessage?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        });
+      }
+    });
+  </script>
+</Layout>

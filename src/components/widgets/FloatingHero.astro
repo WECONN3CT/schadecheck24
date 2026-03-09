@@ -1,0 +1,622 @@
+---
+import { Image } from 'astro:assets';
+
+// Import background
+import backgroundHero from '~/assets/images/Hero elements floating/background hero.webp';
+import heroMobile from '~/assets/images/Hero elements floating/hero mobile.png';
+
+// Import floating elements
+import element1 from '~/assets/images/Hero elements floating/013_7_11zon.webp';
+import element2 from '~/assets/images/Hero elements floating/014_1_11zon.webp';
+import element3 from '~/assets/images/Hero elements floating/015_2_11zon.webp';
+import element4 from '~/assets/images/Hero elements floating/016_3_11zon.webp';
+import element5 from '~/assets/images/Hero elements floating/018_5_11zon.webp';
+import bumper from '~/assets/images/Hero elements floating/bumper.webp';
+
+interface Props {
+  id?: string;
+  title?: string;
+  subtitle?: string;
+}
+
+const { id = 'floating-hero', title, subtitle } = Astro.props;
+---
+
+<!-- ===== DESKTOP VERSION (hidden on mobile) ===== -->
+<section
+  class="floating-hero-section relative overflow-hidden hidden md:block"
+  {...id ? { id } : {}}
+  data-floating-hero
+>
+  <!-- Background Image (Stretched) -->
+  <div class="absolute inset-0 z-0">
+    <Image
+      src={backgroundHero}
+      alt="Unfallfahrzeug Hintergrund für Kfz Gutachter Remscheid und KFZ Sachverständiger Remscheid Unfallgutachten & Wertgutachten"
+      class="w-full h-full object-cover"
+      loading="eager"
+      fetchpriority="high"
+      width={1920}
+      height={1080}
+    />
+    <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 50%, rgba(2,15,20,0.8) 100%);"></div>
+  </div>
+
+  <!-- Floating Elements Container - Clipped to prevent overflow -->
+  <div class="floating-elements-container absolute inset-0 z-10 pointer-events-none overflow-hidden" aria-hidden="true">
+    <!-- Element 1 (013_7): Fliegt stark nach oben links -->
+    <div
+      class="floating-element"
+      data-start-x="70"
+      data-start-y="55"
+      data-end-x="8"
+      data-end-y="5"
+      data-repel-strength="100"
+    >
+      <Image src={element1} alt="Beschädigtes Fahrzeugteil für Kfz Gutachter Remscheid Unfallgutachten und Wertgutachten" width={160} height={160} loading="eager" class="w-20 sm:w-24 md:w-36 lg:w-40 opacity-0" />
+    </div>
+
+    <!-- Element 5 (018_5): Fliegt nach links mitte -->
+    <div
+      class="floating-element"
+      data-start-x="70"
+      data-start-y="55"
+      data-end-x="15"
+      data-end-y="40"
+      data-repel-strength="120"
+    >
+      <Image src={element5} alt="Karosserieschaden mit Kfz Gutachter Remscheid und KFZ Sachverständiger Remscheid für Unfallgutachten" width={175} height={175} loading="eager" class="w-24 sm:w-28 md:w-40 lg:w-48 opacity-0" />
+    </div>
+
+    <!-- Bumper: Fliegt nach unten links -->
+    <div
+      class="floating-element"
+      data-start-x="70"
+      data-start-y="55"
+      data-end-x="5"
+      data-end-y="75"
+      data-repel-strength="110"
+    >
+      <Image src={bumper} alt="Beschädigte Stoßstange - Kfz Gutachter Remscheid KFZ Sachverständiger Remscheid Unfallgutachten" width={450} height={450} loading="eager" class="w-48 sm:w-56 md:w-80 lg:w-96 opacity-0" />
+    </div>
+  </div>
+
+  <!-- Content Overlay (Text) - DESKTOP VERSION -->
+  <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 py-20 md:pt-8 md:pb-32 lg:pt-12 lg:pb-40">
+    <div class="text-white">
+      <!-- Content starts at ~15% from left -->
+      <div class="ml-0 md:ml-[15%] max-w-3xl">
+        {
+          title && (
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 drop-shadow-lg text-left" set:html={title} />
+          )
+        }
+        {
+          subtitle && (
+            <p class="text-sm sm:text-base md:text-3xl lg:text-4xl font-semibold text-gray-100 mb-8 drop-shadow-md text-left" set:html={subtitle} />
+          )
+        }
+
+        <!-- USP Checkmarks in Pastel Turquoise (Left-aligned) -->
+        <div class="space-y-3 mb-8">
+          <div class="flex items-start gap-2 sm:gap-3">
+            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#7DD3E8] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span class="text-xs sm:text-sm md:text-lg lg:text-xl drop-shadow-md">Sofortige Unterstützung direkt bei Ihnen vor Ort</span>
+          </div>
+          <div class="flex items-start gap-2 sm:gap-3">
+            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#7DD3E8] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span class="text-xs sm:text-sm md:text-lg lg:text-xl drop-shadow-md">Rundum-Service aus einer Hand</span>
+          </div>
+          <div class="flex items-start gap-2 sm:gap-3">
+            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#7DD3E8] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span class="text-xs sm:text-sm md:text-lg lg:text-xl drop-shadow-md">Rund um die Uhr für Sie erreichbar</span>
+          </div>
+        </div>
+
+        <!-- CTA Buttons - DESKTOP -->
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <!-- Phone Button (Highlight Turquoise) -->
+          <a
+            href="tel:+4921917932020"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#7DD3E8] hover:bg-[#5DC3DD] text-[#003366] font-semibold px-4 sm:px-6 py-3 sm:py-4 rounded-lg text-sm sm:text-base transition-all duration-200 transform hover:scale-105 hover:shadow-lg drop-shadow-md"
+            data-analytics="phone-click"
+          >
+            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+            </svg>
+            <span class="hidden sm:inline">+49 2191 7932020</span>
+            <span class="sm:hidden">Anrufen</span>
+          </a>
+
+          <!-- WhatsApp Button (Green) -->
+          <a
+            href="https://wa.me/4921917932020?text=Hallo%2C%20ich%20hatte%20einen%20Unfall.%0A%0AName%3A%20%0APLZ%2FOrt%3A%20%0AErreichbar%20um%3A%20%0AUnfallzeit%3A%20%0AKurzbeschreibung%3A%20"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20BA5A] text-white font-semibold px-4 sm:px-6 py-3 sm:py-4 rounded-lg text-sm sm:text-base transition-all duration-200 transform hover:scale-105 hover:shadow-lg drop-shadow-md"
+            data-analytics="whatsapp-click"
+          >
+            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            <span>WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MOBILE VERSION (hidden on desktop) ===== -->
+<section class="block md:hidden relative overflow-hidden py-16 sm:py-20 -mt-20 md:mt-0 z-30" {...id ? { id } : {}}>
+
+  <!-- Background Image (Mobile-specific BMW image) -->
+  <div class="absolute inset-0 z-0" style="margin-top: -100px;">
+      <Image
+        src={heroMobile}
+        alt="BMW Unfallfahrzeug bei Kfz Gutachter Remscheid & KFZ Sachverständiger Remscheid für Unfallgutachten und Wertgutachten"
+      class="w-full h-full object-cover object-center"
+      loading="eager"
+      fetchpriority="high"
+      width={1500}
+      height={2000}
+      widths={[600, 800, 1200, 1500]}
+      sizes="(max-width: 768px) 100vw, 0px"
+    />
+    <!-- Subtle gradient overlay for text readability -->
+    <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(2,15,20,0.3) 0%, rgba(2,15,20,0.2) 50%, rgba(2,15,20,0.4) 100%);"></div>
+  </div>
+
+  <!-- Content Overlay (relative z-index for content to appear above background) -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6" style="margin-top: 50px;">
+    <div class="text-white">
+      <div class="ml-0 max-w-3xl">
+        {
+          title && (
+            <div class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg text-left" role="heading" aria-level="1" set:html={title} />
+          )
+        }
+        {
+          subtitle && (
+            <p class="text-2xl sm:text-3xl font-semibold text-gray-100 mb-8 drop-shadow-md text-left" set:html={subtitle} />
+          )
+        }
+
+        <!-- USP Checkmarks - MOBILE -->
+        <div class="space-y-3 mb-12">
+          <div class="flex items-start gap-2 sm:gap-3">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7 text-[#7DD3E8] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span class="text-sm sm:text-base drop-shadow-md">Sofortige Unterstützung direkt bei Ihnen vor Ort</span>
+          </div>
+          <div class="flex items-start gap-2 sm:gap-3">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7 text-[#7DD3E8] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span class="text-sm sm:text-base drop-shadow-md">Rundum-Service aus einer Hand</span>
+          </div>
+          <div class="flex items-start gap-2 sm:gap-3">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7 text-[#7DD3E8] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span class="text-sm sm:text-base drop-shadow-md">Rund um die Uhr für Sie erreichbar</span>
+          </div>
+        </div>
+
+        <!-- CTA Buttons - MOBILE with bottom overlap (responsive for ultra-small devices) -->
+        <div class="relative z-50 -mx-4 sm:-mx-6 px-4 sm:px-6" style="margin-top: 240px; margin-bottom: calc(-1 * min(80px, 15vh)); padding-bottom: min(80px, 15vh);">
+          <div class="flex flex-col gap-3">
+            <!-- Phone Button -->
+            <a
+              href="tel:+4921917932020"
+              class="w-full inline-flex items-center justify-center gap-2 bg-[#7DD3E8] hover:bg-[#5DC3DD] text-[#003366] font-semibold px-4 sm:px-6 py-3.5 sm:py-4 rounded-lg text-base sm:text-lg transition-all duration-200 transform hover:scale-105 hover:shadow-lg drop-shadow-md min-h-[52px] sm:min-h-[56px]"
+              data-analytics="phone-click"
+            >
+              <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+              </svg>
+              <span>Anrufen</span>
+            </a>
+
+            <!-- WhatsApp Button -->
+            <a
+              href="https://wa.me/4921917932020?text=Hallo%2C%20ich%20hatte%20einen%20Unfall.%0A%0AName%3A%20%0APLZ%2FOrt%3A%20%0AErreichbar%20um%3A%20%0AUnfallzeit%3A%20%0AKurzbeschreibung%3A%20"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20BA5A] text-white font-semibold px-4 sm:px-6 py-3.5 sm:py-4 rounded-lg text-base sm:text-lg transition-all duration-200 transform hover:scale-105 hover:shadow-lg drop-shadow-md min-h-[52px] sm:min-h-[56px]"
+              data-analytics="whatsapp-click"
+            >
+              <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              <span>WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .floating-hero-section {
+    min-height: 500px;
+    height: 70vh;
+    max-height: 800px;
+    position: relative;
+  }
+
+  /* Floating Elements - Explosion Effect */
+  .floating-element {
+    position: absolute;
+    will-change: transform;
+    /* Kein transition hier - Animation per JS */
+  }
+
+  .floating-element img {
+    will-change: opacity;
+    /* Kein transition - Animation per JS für smooth performance */
+  }
+
+  /* Subtle idle floating after explosion - DEAKTIVIERT wegen Konflikten */
+  /* Die Elemente bleiben nach der Explosion an ihrer Position */
+  /* Nur Cursor-Repel-Effekt ist aktiv */
+
+  /* Reduced Motion Support (Accessibility) */
+  @media (prefers-reduced-motion: reduce) {
+    .floating-element {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+
+  /* Mobile Optimization */
+  @media (max-width: 768px) {
+    .floating-hero-section {
+      min-height: 400px;
+      height: 60vh;
+    }
+
+    /* Reduce opacity on mobile for better text readability */
+    .floating-element img {
+      opacity: 0.7 !important;
+    }
+  }
+</style>
+
+<script>
+  // Explosion Effect Controller - nur für Desktop Version
+  class FloatingHeroController {
+    private section: HTMLElement | null = null;
+    private elements: HTMLElement[] = [];
+    private isVisible = false;
+    private hasPointer = false;
+    private hasExploded = false;
+    private isAnimating = false;
+    private mouseX = 0;
+    private mouseY = 0;
+    private isUpdating = false;
+    private observer: IntersectionObserver | null = null;
+    private elementData: Array<{
+      element: HTMLElement;
+      startX: number;
+      startY: number;
+      endX: number;
+      endY: number;
+      currentX: number;
+      currentY: number;
+      repelStrength: number;
+      velocityX: number;
+      velocityY: number;
+      width: number;
+      height: number;
+    }> = [];
+
+    constructor() {
+      this.init();
+    }
+
+    private init(): void {
+      this.section = document.querySelector('[data-floating-hero]');
+      if (!this.section) return;
+
+      this.elements = Array.from(this.section.querySelectorAll('.floating-element'));
+
+      // Parse element data
+      this.elements.forEach((element) => {
+        const startX = parseFloat(element.getAttribute('data-start-x') || '75');
+        const startY = parseFloat(element.getAttribute('data-start-y') || '70');
+        const endX = parseFloat(element.getAttribute('data-end-x') || '50');
+        const endY = parseFloat(element.getAttribute('data-end-y') || '50');
+        const repelStrength = parseFloat(element.getAttribute('data-repel-strength') || '100');
+
+        // Set initial position (at car) with GPU acceleration
+        element.style.position = 'absolute';
+        element.style.left = `${startX}%`;
+        element.style.top = `${startY}%`;
+        element.style.transform = 'translate3d(-50%, -50%, 0)';
+        element.style.backfaceVisibility = 'hidden';
+        element.style.perspective = '1000px';
+
+        // Set initial image opacity
+        const img = element.querySelector('img');
+        if (img) {
+          img.style.opacity = '0';
+        }
+
+        // Cache element dimensions once (vor Animation)
+        const rect = element.getBoundingClientRect();
+
+        this.elementData.push({
+          element,
+          startX,
+          startY,
+          endX,
+          endY,
+          currentX: startX,
+          currentY: startY,
+          repelStrength,
+          velocityX: 0,
+          velocityY: 0,
+          width: rect.width || 200,
+          height: rect.height || 200,
+        });
+      });
+
+      // Detect if device has pointer (desktop)
+      this.hasPointer = window.matchMedia('(pointer: fine)').matches;
+
+      // Setup Intersection Observer
+      this.setupIntersectionObserver();
+
+      // Only add mousemove on desktop
+      if (this.hasPointer) {
+        this.section.addEventListener('mousemove', this.handleMouseMove.bind(this));
+      }
+    }
+
+    private setupIntersectionObserver(): void {
+      this.observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            this.isVisible = entry.isIntersecting;
+
+            if (this.isVisible && !this.hasExploded) {
+              // Trigger explosion when visible
+              this.triggerExplosion();
+              this.hasExploded = true;
+            }
+          });
+        },
+        {
+          threshold: 0.3, // Trigger when 30% visible
+        }
+      );
+
+      if (this.section) {
+        this.observer.observe(this.section);
+      }
+    }
+
+    private triggerExplosion(): void {
+      // Setze Animation-Flag und blockiere Cursor-Interaktion
+      this.isAnimating = true;
+
+      // Explosion animation in slow motion
+      this.elementData.forEach((data, index) => {
+        // Animate to end position with easing (slow start, then decelerate)
+        this.animateExplosion(data, index);
+      });
+    }
+
+    private animateExplosion(data: any, index: number): void {
+      const duration = 3500; // 3.5 seconds - langsamer
+      const startTime = performance.now() + index * 200; // Staggered start
+      const img = data.element.querySelector('img');
+
+      // Calculate total animation time including stagger
+      const totalAnimationTime = duration + index * 200;
+      const isLastElement = index === this.elementData.length - 1;
+
+      // Calculate total distance in pixels (for smooth animation)
+      const sectionRect = this.section!.getBoundingClientRect();
+
+      // Berechne Browser-Grenzen basierend auf Element-Größe
+      const elementWidth = data.width;
+      const elementHeight = data.height;
+
+      // Min/Max Positionen in Prozent (damit Element vollständig sichtbar bleibt)
+      const minXPercent = (elementWidth / 2 / sectionRect.width) * 100;
+      const maxXPercent = ((sectionRect.width - elementWidth / 2) / sectionRect.width) * 100;
+      const minYPercent = (elementHeight / 2 / sectionRect.height) * 100;
+      const maxYPercent = ((sectionRect.height - elementHeight / 2) / sectionRect.height) * 100;
+
+      // Clampe Endposition innerhalb der Grenzen
+      const clampedEndX = Math.max(minXPercent, Math.min(maxXPercent, data.endX));
+      const clampedEndY = Math.max(minYPercent, Math.min(maxYPercent, data.endY));
+
+      // Berechne Distanz mit geclampten Endpositionen
+      const totalDistanceX = ((clampedEndX - data.startX) / 100) * sectionRect.width;
+      const totalDistanceY = ((clampedEndY - data.startY) / 100) * sectionRect.height;
+
+      const animate = (currentTime: number) => {
+        const elapsed = currentTime - startTime;
+        if (elapsed < 0) {
+          requestAnimationFrame(animate);
+          return;
+        }
+
+        const progress = Math.min(elapsed / duration, 1);
+
+        // Smooth cubic easing with powerful start (keine harten Übergänge!)
+        // Formel: easeOutCubic mit customization für starken Start
+        const eased = 1 - Math.pow(1 - progress, 2.5);
+
+        // Calculate movement offset in pixels (vom Startpunkt)
+        const offsetX = totalDistanceX * eased;
+        const offsetY = totalDistanceY * eased;
+
+        // Calculate opacity (fade in during first 20%)
+        const opacity = Math.min(progress / 0.2, 1) * 0.85;
+
+        // Apply position via transform ONLY (NO left/top changes = NO reflow!)
+        data.element.style.transform = `translate3d(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px), 0)`;
+
+        // Apply opacity
+        if (img) {
+          img.style.opacity = opacity.toString();
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          // Animation fertig - setze finale Position in left/top (mit geclampten Werten!)
+          data.currentX = clampedEndX;
+          data.currentY = clampedEndY;
+          data.element.style.left = `${clampedEndX}%`;
+          data.element.style.top = `${clampedEndY}%`;
+          data.element.style.transform = 'translate3d(-50%, -50%, 0)'; // Reset transform
+
+          // Wenn dies das letzte Element ist: Cursor-Interaktion aktivieren
+          if (isLastElement) {
+            this.isAnimating = false;
+          }
+
+          // Entferne will-change nach Animation für bessere Performance
+          setTimeout(() => {
+            data.element.style.willChange = 'auto';
+            if (img) {
+              img.style.willChange = 'auto';
+            }
+          }, 100);
+        }
+      };
+
+      requestAnimationFrame(animate);
+    }
+
+    private handleMouseMove(e: MouseEvent): void {
+      if (!this.isVisible || !this.section || !this.hasExploded || this.isAnimating) return;
+
+      const rect = this.section.getBoundingClientRect();
+      this.mouseX = e.clientX - rect.left;
+      this.mouseY = e.clientY - rect.top;
+
+      // Starte kontinuierliches Update wenn nicht schon läuft
+      if (!this.isUpdating) {
+        this.isUpdating = true;
+        this.continuousUpdate();
+      }
+    }
+
+    private continuousUpdate(): void {
+      if (!this.isVisible || !this.hasExploded || this.isAnimating) {
+        this.isUpdating = false;
+        return;
+      }
+
+      this.applyRepelEffect();
+
+      // Weiter updaten für smooth Animation
+      requestAnimationFrame(() => this.continuousUpdate());
+    }
+
+    private applyRepelEffect(): void {
+      this.elementData.forEach((data) => {
+        // Berechne Element-Position relativ zur Section
+        const sectionRect = this.section!.getBoundingClientRect();
+
+        // Aktuelle Position aus left/top % + velocity offset
+        const currentLeftPercent = data.currentX;
+        const currentTopPercent = data.currentY;
+
+        const elementX = (currentLeftPercent / 100) * sectionRect.width + data.velocityX;
+        const elementY = (currentTopPercent / 100) * sectionRect.height + data.velocityY;
+
+        // Calculate distance from mouse to element
+        const dx = elementX - this.mouseX;
+        const dy = elementY - this.mouseY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        // Calculate repel force
+        const repelRadius = 250; // Größerer Radius für bessere Interaktion
+
+        if (distance < repelRadius && distance > 0) {
+          // Starke Abstoßung wenn nah
+          const force = Math.pow(1 - distance / repelRadius, 2) * data.repelStrength * 1.5;
+          const angle = Math.atan2(dy, dx);
+
+          const pushX = Math.cos(angle) * force;
+          const pushY = Math.sin(angle) * force;
+
+          // Direkt zur velocity addieren für smooth Beschleunigung
+          const acceleration = 0.3;
+          data.velocityX += pushX * acceleration;
+          data.velocityY += pushY * acceleration;
+        }
+
+        // Konstante leichte Dämpfung
+        const damping = 0.96;
+        data.velocityX *= damping;
+        data.velocityY *= damping;
+
+        // Stoppe komplett wenn velocity sehr klein
+        if (Math.abs(data.velocityX) < 0.05) data.velocityX = 0;
+        if (Math.abs(data.velocityY) < 0.05) data.velocityY = 0;
+
+        // Use cached element dimensions (NO getBoundingClientRect!)
+        const elementWidth = data.width;
+        const elementHeight = data.height;
+
+        // Calculate boundary limits (in pixels relative to section)
+        const minX = elementWidth / 2; // Half width from left edge
+        const maxX = sectionRect.width - elementWidth / 2; // Half width from right edge
+        const minY = elementHeight / 2; // Half height from top edge
+        const maxY = sectionRect.height - elementHeight / 2; // Half height from bottom edge
+
+        // Calculate new position with velocity
+        const newElementX = (currentLeftPercent / 100) * sectionRect.width + data.velocityX;
+        const newElementY = (currentTopPercent / 100) * sectionRect.height + data.velocityY;
+
+        // Clamp velocity to keep element within bounds
+        if (newElementX < minX) {
+          data.velocityX = minX - (currentLeftPercent / 100) * sectionRect.width;
+        } else if (newElementX > maxX) {
+          data.velocityX = maxX - (currentLeftPercent / 100) * sectionRect.width;
+        }
+
+        if (newElementY < minY) {
+          data.velocityY = minY - (currentTopPercent / 100) * sectionRect.height;
+        } else if (newElementY > maxY) {
+          data.velocityY = maxY - (currentTopPercent / 100) * sectionRect.height;
+        }
+
+        // Apply transform mit aktueller velocity
+        data.element.style.transform = `translate3d(calc(-50% + ${data.velocityX}px), calc(-50% + ${data.velocityY}px), 0)`;
+      });
+    }
+
+    public destroy(): void {
+      if (this.observer) {
+        this.observer.disconnect();
+      }
+    }
+  }
+
+  // Initialize on DOM ready
+  document.addEventListener('DOMContentLoaded', () => {
+    new FloatingHeroController();
+  });
+
+  // Re-initialize after Astro view transitions
+  document.addEventListener('astro:page-load', () => {
+    new FloatingHeroController();
+  });
+</script>

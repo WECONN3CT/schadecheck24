@@ -1,0 +1,22 @@
+---
+import { SITE } from 'astrowind:config';
+import { Image } from 'astro:assets';
+import logoImage from '~/assets/images/logo.webp';
+
+interface Props {
+  loading?: 'eager' | 'lazy';
+  class?: string;
+}
+
+const { loading = 'eager', class: className = 'h-14 md:h-16 w-auto' } = Astro.props;
+---
+
+<Image
+  src={logoImage}
+  alt="Logo Kfz Gutachter Remscheid - KFZ Sachverständiger Remscheid für Unfallgutachten und Wertgutachten"
+  width={240}
+  height={80}
+  loading={loading}
+  decoding={loading === 'eager' ? 'sync' : 'async'}
+  class={className}
+/>

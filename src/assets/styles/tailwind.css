@@ -1,0 +1,303 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Prevent horizontal scrolling on all devices */
+@layer base {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+  html {
+    width: 100%;
+    max-width: 100%;
+  }
+  body {
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+  }
+  /* Ensure no elements can overflow horizontally */
+  main,
+  header,
+  footer,
+  section,
+  article,
+  nav,
+  aside {
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .bg-page {
+    background-color: var(--aw-color-bg-page);
+  }
+  .bg-dark {
+    background-color: var(--aw-color-bg-page-dark);
+  }
+  .bg-light {
+    background-color: var(--aw-color-bg-page);
+  }
+  .text-page {
+    color: var(--aw-color-text-page);
+  }
+  .text-muted {
+    color: var(--aw-color-text-muted);
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-full border-gray-400 border bg-transparent font-medium text-center text-base text-page leading-snug transition py-3.5 px-6 md:px-8 ease-in duration-200 focus:ring-blue-500 focus:ring-offset-blue-200 focus:ring-2 focus:ring-offset-2 hover:bg-gray-100 hover:border-gray-600 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800 dark:hover:border-slate-800 cursor-pointer;
+  }
+
+  .btn-primary {
+    @apply btn font-semibold bg-primary text-white border-primary hover:bg-secondary hover:border-secondary hover:text-white dark:text-white dark:bg-primary dark:border-primary dark:hover:border-secondary dark:hover:bg-secondary;
+  }
+
+  .btn-secondary {
+    @apply btn;
+  }
+
+  .btn-tertiary {
+    @apply btn border-none shadow-none text-muted hover:text-gray-900 dark:text-gray-400 dark:hover:text-white;
+  }
+}
+
+/* Mobile Header Hide/Show on Scroll */
+@media (max-width: 768px) {
+  .header-mobile-hide {
+    @apply opacity-0 pointer-events-none transition-opacity duration-300;
+  }
+  .header-mobile-hide.show {
+    @apply opacity-100 pointer-events-auto;
+  }
+}
+
+/* Glassmorphism Header - Default (Closed) State: More transparent */
+#header > div:first-child {
+  background: rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    0 16px 48px -12px rgba(0, 0, 0, 0.12),
+    0 0 40px rgba(255, 255, 255, 0.3) inset;
+  border-radius: 0 0 20px 20px;
+}
+
+.dark #header > div:first-child {
+  background: rgba(3, 6, 33, 0.5) !important;
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 16px 48px -12px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(255, 255, 255, 0.05) inset;
+  border-radius: 0 0 20px 20px;
+}
+
+/* Header on scroll - slightly less transparent with smooth fade-in */
+#header.scroll > div:first-child {
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.06),
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 16px 48px -12px rgba(0, 0, 0, 0.15),
+    0 0 40px rgba(255, 255, 255, 0.3) inset;
+  border-radius: 0 0 20px 20px;
+  animation: headerFadeIn 0.4s ease-out;
+}
+
+.dark #header.scroll > div:first-child,
+#header.scroll.dark > div:first-child {
+  background: rgba(3, 6, 33, 0.6) !important;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    0 16px 48px -12px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(255, 255, 255, 0.05) inset;
+  border-radius: 0 0 20px 20px;
+  animation: headerFadeIn 0.4s ease-out;
+}
+/* #header.scroll > div:last-child {
+  @apply py-3;
+} */
+
+#header nav {
+  transition: opacity 0.3s ease-in-out;
+}
+
+#header.expanded nav {
+  position: fixed;
+  top: 120px; /* 70px + 50px extra space from logo */
+  left: 0;
+  right: 0;
+  bottom: 70px !important;
+  padding: 0 5px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: calc(100vh - 190px); /* Adjusted for new top position */
+  width: 100%;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes headerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile Menu: Smooth transition for background and blur */
+#header {
+  transition: background 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
+}
+
+/* Mobile Menu Expanded: Same color, only more blur */
+#header.expanded {
+  background: rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(24px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.12),
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    0 24px 64px -16px rgba(0, 0, 0, 0.2),
+    0 0 60px rgba(255, 255, 255, 0.2) inset !important;
+}
+
+#header.expanded.dark {
+  background: rgba(3, 6, 33, 0.5) !important;
+  backdrop-filter: blur(24px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    0 12px 40px rgba(0, 0, 0, 0.6),
+    0 24px 64px -16px rgba(0, 0, 0, 0.7),
+    0 0 60px rgba(255, 255, 255, 0.05) inset !important;
+}
+
+/* Smooth transitions for all glassmorphism properties */
+#header > div:first-child,
+#header > div:nth-child(2) {
+  transition: background 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+#header.expanded > div:first-child {
+  background: transparent !important;
+}
+
+#header.expanded > div:nth-child(2) {
+  background: transparent !important;
+}
+
+/* Prevent scroll styles from applying when menu is expanded */
+#header.expanded.scroll > div:first-child {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Mobile Menu: Increase font size and adjust layout */
+@media (max-width: 767px) {
+  #header.expanded nav ul {
+    font-size: 1.5rem !important;
+  }
+
+  #header.expanded nav ul li a {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  /* Position buttons - with 50px extra spacing from top */
+  #header.expanded > div > div:last-child {
+    position: fixed !important;
+    bottom: auto !important;
+    top: calc(22vh + 50px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 1rem !important;
+    gap: 0.75rem !important;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  /* Mobile menu buttons - optimized width */
+  #header.expanded > div > div:last-child > div {
+    width: 100% !important;
+    max-width: 280px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+
+  #header.expanded > div > div:last-child a {
+    width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    font-size: 0.875rem !important;
+    justify-content: center !important;
+  }
+
+  /* Smooth transition for button container */
+  #header > div > div:last-child {
+    transition: opacity 0.3s ease-in-out;
+  }
+}
+
+.dropdown:focus .dropdown-menu,
+.dropdown:focus-within .dropdown-menu,
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+[astro-icon].icon-light > * {
+  stroke-width: 1.2;
+}
+
+[astro-icon].icon-bold > * {
+  stroke-width: 2.4;
+}
+
+[data-aw-toggle-menu] path {
+  @apply transition;
+}
+[data-aw-toggle-menu].expanded g > path:first-child {
+  @apply -rotate-45 translate-y-[15px] translate-x-[-3px];
+}
+
+[data-aw-toggle-menu].expanded g > path:last-child {
+  @apply rotate-45 translate-y-[-8px] translate-x-[14px];
+}
+
+/* To deprecated */
+
+.dd *:first-child {
+  margin-top: 0;
+}

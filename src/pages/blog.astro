@@ -1,0 +1,162 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const allPosts = await getCollection('post');
+const publishedPosts = allPosts
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => {
+    const dateA = a.data.publishDate ? new Date(a.data.publishDate).getTime() : 0;
+    const dateB = b.data.publishDate ? new Date(b.data.publishDate).getTime() : 0;
+    return dateB - dateA;
+  });
+
+const metadata = {
+  title: 'Blog | KFZ Gutachter Remscheid & KFZ Sachverständiger Unfallgutachten bei SchadenCheck',
+  description:
+    'Aktuelle Informationen, Tipps und Ratgeber rund um Kfz-Gutachten, Unfallschäden und Ihre Rechte nach einem Autounfall.',
+  canonical: 'https://schaden-check24.de/blog/',
+  openGraph: {
+    type: 'website',
+    url: 'https://schaden-check24.de/blog/',
+    title: 'Blog | KFZ Gutachter Remscheid & KFZ Sachverständiger Unfallgutachten bei SchadenCheck',
+    description: 'Aktuelle Informationen, Tipps und Ratgeber rund um Kfz-Gutachten, Unfallschäden und Ihre Rechte.',
+    siteName: 'KFZ Gutachter Remscheid & KFZ Sachverständiger Unfallgutachten bei SchadenCheck',
+    locale: 'de_DE',
+  },
+};
+
+function formatDate(date: Date | undefined) {
+  if (!date) return '';
+  return new Date(date).toLocaleDateString('de-DE', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <Hero
+    id="blog-hero"
+    title="<span class='text-highlight'>Blog</span> – Wissenswertes rund um Kfz-Gutachten"
+    subtitle="Tipps, Ratgeber und aktuelle Informationen zu Unfallschäden und Ihren Rechten"
+  />
+
+  <!-- Blog Posts Grid -->
+  <section class="py-16 md:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      {
+        publishedPosts.length === 0 ? (
+          <div class="text-center max-w-3xl mx-auto">
+            <div class="mb-8">
+              <svg
+                class="w-24 h-24 mx-auto text-primary-600 dark:text-primary-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                />
+              </svg>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white">
+              Unser Blog kommt bald
+            </h2>
+            <p class="text-lg text-gray-700 dark:text-gray-300 mb-8">
+              Wir arbeiten gerade an informativen Beiträgen für Sie.
+            </p>
+          </div>
+        ) : (
+          <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {publishedPosts.map((post) => (
+              <article class="bg-white dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                {post.data.image && (
+                  <a href={`/blog/${post.id}/`} class="block aspect-video overflow-hidden">
+                    <img
+                      src={post.data.image}
+                      alt={post.data.title}
+                      class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                      width="800"
+                      height="450"
+                    />
+                  </a>
+                )}
+
+                <div class="p-6">
+                  {post.data.category && (
+                    <span class="inline-block px-3 py-1 text-xs font-semibold text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 rounded-full mb-3">
+                      {post.data.category}
+                    </span>
+                  )}
+
+                  <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">
+                    <a href={`/blog/${post.id}/`} class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                      {post.data.title}
+                    </a>
+                  </h3>
+
+                  {post.data.excerpt && (
+                    <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">{post.data.excerpt}</p>
+                  )}
+
+                  <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-500">
+                    <time datetime={post.data.publishDate?.toISOString()}>
+                      {formatDate(post.data.publishDate)}
+                    </time>
+                    <a
+                      href={`/blog/${post.id}/`}
+                      class="text-primary-600 dark:text-primary-400 hover:underline font-semibold"
+                      aria-label={`Artikel lesen: ${post.data.title}`}
+                    >
+                      Artikel lesen →
+                    </a>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <CallToAction
+    title="Unfallschaden? Wir sind für Sie da!"
+    subtitle="Kostenlose Erstberatung und schnelle Schadensabwicklung – professionell und unabhängig."
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Jetzt Schaden melden',
+        href: '/schaden-melden/',
+      },
+      {
+        variant: 'secondary',
+        text: 'Mehr zu unseren Leistungen',
+        href: '/leistungen/',
+      },
+    ]}
+  />
+</Layout>
+
+<style>
+  @media (min-width: 1024px) {
+    /* Prevent header overlap on the blog hero in desktop view */
+    :global(#blog-hero) {
+      margin-top: 120px;
+      padding-top: 120px;
+    }
+    :global(#blog-hero .text-center) {
+      margin-top: 0;
+    }
+  }
+</style>

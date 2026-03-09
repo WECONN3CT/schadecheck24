@@ -1,0 +1,76 @@
+---
+import { ANALYTICS } from 'astrowind:config';
+const gaId = ANALYTICS?.vendors?.googleAnalytics?.id;
+---
+
+<!-- Google Analytics with DSGVO Cookie Consent Integration -->
+<script is:inline define:vars={{ gaId }}>
+  // Only load Analytics if user has given consent
+  function initGoogleAnalytics() {
+    if (!gaId) return; // GA not configured
+
+    // Load Google Analytics
+    const script1 = document.createElement('script');
+    script1.async = true;
+    script1.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+    document.head.appendChild(script1);
+
+    // Initialize gtag
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', gaId, {
+      'anonymize_ip': true,
+      'cookie_flags': 'SameSite=Lax;Secure'
+    });
+
+    // Track CTA clicks
+    document.querySelectorAll('[data-analytics="phone_click"]').forEach(function(el) {
+      el.addEventListener('click', function() {
+        gtag('event', 'click_phone', {
+          event_category: 'engagement',
+          event_label: 'phone_cta',
+        });
+      });
+    });
+
+    document.querySelectorAll('[data-analytics="whatsapp_click"]').forEach(function(el) {
+      el.addEventListener('click', function() {
+        gtag('event', 'click_whatsapp', {
+          event_category: 'engagement',
+          event_label: 'whatsapp_cta',
+        });
+      });
+    });
+
+    document.querySelectorAll('[data-analytics="form_submit"]').forEach(function(el) {
+      el.addEventListener('click', function() {
+        gtag('event', 'form_submission', {
+          event_category: 'engagement',
+          event_label: 'schaden_melden_form',
+        });
+      });
+    });
+  }
+
+  // Listen for cookie consent event
+  window.addEventListener('cookies-analytics-accepted', function() {
+    initGoogleAnalytics();
+  });
+
+  // Check if consent was already given (on page load)
+  document.addEventListener('DOMContentLoaded', function() {
+    const consent = document.cookie.split(';').find(c => c.trim().startsWith('schadencheck_cookie_consent='));
+    if (consent) {
+      try {
+        const consentData = JSON.parse(decodeURIComponent(consent.split('=')[1]));
+        if (consentData.analytics) {
+          initGoogleAnalytics();
+        }
+      } catch (e) {
+        // Invalid consent cookie
+      }
+    }
+  });
+</script>

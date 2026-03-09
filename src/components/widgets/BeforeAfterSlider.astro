@@ -1,0 +1,426 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  beforeImage: ImageMetadata;
+  afterImage: ImageMetadata;
+  beforeAlt?: string;
+  afterAlt?: string;
+  className?: string;
+}
+
+const {
+  beforeImage,
+  afterImage,
+  beforeAlt = 'Vorher',
+  afterAlt = 'Nachher',
+  className = '',
+} = Astro.props;
+---
+
+<div class={`before-after-slider ${className}`}>
+  <div class="slider-container">
+    <!-- Before Image (Schaden) - Background (immer sichtbar) -->
+    <div class="image-wrapper before-image-bg">
+      <Image
+        src={beforeImage}
+        alt={beforeAlt}
+        width={1000}
+        height={562}
+        widths={[400, 600, 800, 1000]}
+        sizes="(max-width: 480px) 400px, (max-width: 768px) 600px, (max-width: 1024px) 800px, 1000px"
+        loading="eager"
+        fetchpriority="high"
+        class="slider-image"
+      />
+      <div class="image-label before-label">Schaden</div>
+    </div>
+
+    <!-- After Image (Repariert) - Foreground with clip (wird eingeblendet) -->
+    <div class="image-wrapper after-image-fg">
+      <Image
+        src={afterImage}
+        alt={afterAlt}
+        width={1000}
+        height={562}
+        widths={[400, 600, 800, 1000]}
+        sizes="(max-width: 480px) 400px, (max-width: 768px) 600px, (max-width: 1024px) 800px, 1000px"
+        loading="eager"
+        fetchpriority="auto"
+        class="slider-image"
+      />
+      <div class="image-label after-label">Repariert</div>
+    </div>
+
+    <!-- Slider Handle -->
+    <div class="slider-handle">
+      <div class="handle-line"></div>
+      <div class="handle-circle">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M12 8L6 16L12 24M20 8L26 16L20 24"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </div>
+      <div class="handle-line"></div>
+    </div>
+
+    <!-- Range Input -->
+    <input
+      type="range"
+      min="0"
+      max="100"
+      value="50"
+      class="slider-input"
+      aria-label="Vorher-Nachher Vergleich: Schieben Sie den Regler nach rechts um die Reparatur zu sehen"
+    />
+  </div>
+</div>
+
+<style>
+  .before-after-slider {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .slider-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background: #f3f4f6;
+  }
+
+  .image-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .slider-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+  }
+
+  .before-image-bg {
+    z-index: 1;
+  }
+
+  .before-image-bg .slider-image {
+    object-position: center center;
+  }
+
+  .after-image-fg {
+    z-index: 2;
+    clip-path: inset(0 100% 0 0);
+    pointer-events: none;
+    background-color: #ffffff;
+  }
+
+  .after-image-fg .slider-image {
+    object-position: center center;
+  }
+
+  /* Image Labels */
+  .image-label {
+    position: absolute;
+    top: 1.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 0.375rem;
+    backdrop-filter: blur(8px);
+    z-index: 10;
+    pointer-events: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .before-label {
+    left: 1.5rem;
+    background: rgba(220, 38, 38, 0.85);
+  }
+
+  .after-label {
+    right: 1.5rem;
+    background: rgba(22, 163, 74, 0.85);
+  }
+
+  /* Slider Handle */
+  .slider-handle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 4px;
+    height: 100%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .handle-line {
+    flex: 1;
+    width: 3px;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.95),
+      rgba(255, 255, 255, 0.8)
+    );
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .handle-circle {
+    width: 48px;
+    height: 48px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    color: #003366;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  /* Range Input */
+  .slider-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: ew-resize;
+    z-index: 4;
+    margin: 0;
+  }
+
+  .slider-input:focus {
+    outline: none;
+  }
+
+  .slider-input:focus-visible + .slider-handle .handle-circle {
+    outline: 3px solid #ffcc00;
+    outline-offset: 2px;
+  }
+
+  /* Hover Effect */
+  .slider-container:hover .handle-circle {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Active/Dragging State */
+  .slider-container:active .handle-circle {
+    transform: scale(1.05);
+    cursor: grabbing;
+  }
+
+  /* Mobile Optimizations */
+  @media (max-width: 768px) {
+    .slider-container {
+      border-radius: 0.75rem;
+      aspect-ratio: 16 / 12;
+      /* Better ratio for mobile - shows more of the car */
+    }
+
+    .slider-image {
+      object-fit: contain;
+      /* Show full car on mobile instead of cropping */
+    }
+
+    .handle-circle {
+      width: 48px;
+      height: 48px;
+    }
+
+    .handle-circle svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .image-label {
+      top: 1rem;
+      font-size: 0.75rem;
+      padding: 0.375rem 0.75rem;
+    }
+
+    .before-label {
+      left: 1rem;
+    }
+
+    .after-label {
+      right: 1rem;
+    }
+  }
+
+  /* Extra small screens */
+  @media (max-width: 480px) {
+    .slider-container {
+      aspect-ratio: 4 / 3;
+    }
+
+    .handle-circle {
+      width: 36px;
+      height: 36px;
+    }
+
+    .handle-circle svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  /* Touch Device Optimization */
+  @media (hover: none) and (pointer: coarse) {
+    .handle-circle {
+      width: 56px;
+      height: 56px;
+    }
+
+    .slider-input {
+      cursor: grab;
+    }
+  }
+</style>
+
+<script>
+  // Before/After Slider Functionality
+  class BeforeAfterSlider {
+    private container: HTMLElement;
+    private slider: HTMLInputElement;
+    private afterImage: HTMLElement;
+    private handle: HTMLElement;
+
+    constructor(container: HTMLElement) {
+      this.container = container;
+      this.slider = container.querySelector('.slider-input') as HTMLInputElement;
+      this.afterImage = container.querySelector('.after-image-fg') as HTMLElement;
+      this.handle = container.querySelector('.slider-handle') as HTMLElement;
+
+      if (!this.slider || !this.afterImage || !this.handle) {
+        console.error('BeforeAfterSlider: Required elements not found');
+        return;
+      }
+
+      this.init();
+    }
+
+    private init(): void {
+      // Initial position - Start at 50% (middle position - better UX)
+      this.updatePosition(50);
+
+      // Input change event
+      this.slider.addEventListener('input', this.handleInput.bind(this));
+
+      // Keyboard support
+      this.slider.addEventListener('keydown', this.handleKeyboard.bind(this));
+
+      // Click/Tap anywhere on image to adjust slider
+      this.container.addEventListener('click', this.handleImageClick.bind(this));
+      this.container.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: true });
+      this.container.addEventListener('touchmove', this.handleTouchMove.bind(this), { passive: true });
+    }
+
+    private handleImageClick(e: MouseEvent): void {
+      const rect = this.container.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const percentage = (x / rect.width) * 100;
+      const clampedValue = Math.max(0, Math.min(100, percentage));
+
+      this.slider.value = clampedValue.toString();
+      this.updatePosition(clampedValue);
+    }
+
+    private handleTouchStart(e: TouchEvent): void {
+      if (e.touches.length > 0) {
+        this.updateSliderFromTouch(e.touches[0]);
+      }
+    }
+
+    private handleTouchMove(e: TouchEvent): void {
+      if (e.touches.length > 0) {
+        this.updateSliderFromTouch(e.touches[0]);
+      }
+    }
+
+    private updateSliderFromTouch(touch: Touch): void {
+      const rect = this.container.getBoundingClientRect();
+      const x = touch.clientX - rect.left;
+      const percentage = (x / rect.width) * 100;
+      const clampedValue = Math.max(0, Math.min(100, percentage));
+
+      this.slider.value = clampedValue.toString();
+      this.updatePosition(clampedValue);
+    }
+
+    private handleInput(e: Event): void {
+      const target = e.target as HTMLInputElement;
+      const value = parseFloat(target.value);
+      this.updatePosition(value);
+    }
+
+    private handleKeyboard(e: KeyboardEvent): void {
+      const step = e.shiftKey ? 10 : 1;
+      let currentValue = parseFloat(this.slider.value);
+
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
+        currentValue = Math.max(0, currentValue - step);
+        this.slider.value = currentValue.toString();
+        this.updatePosition(currentValue);
+        e.preventDefault();
+      } else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
+        currentValue = Math.min(100, currentValue + step);
+        this.slider.value = currentValue.toString();
+        this.updatePosition(currentValue);
+        e.preventDefault();
+      }
+    }
+
+    private updatePosition(value: number): void {
+      // Update clip-path for after image (reveal from left to right)
+      this.afterImage.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+
+      // Update handle position
+      this.handle.style.left = `${value}%`;
+    }
+  }
+
+  // Initialize all sliders on the page
+  document.addEventListener('DOMContentLoaded', () => {
+    const sliders = document.querySelectorAll('.before-after-slider .slider-container');
+    sliders.forEach((slider) => {
+      new BeforeAfterSlider(slider as HTMLElement);
+    });
+  });
+
+  // Reinitialize after view transitions (if enabled)
+  document.addEventListener('astro:page-load', () => {
+    const sliders = document.querySelectorAll('.before-after-slider .slider-container');
+    sliders.forEach((slider) => {
+      new BeforeAfterSlider(slider as HTMLElement);
+    });
+  });
+</script>

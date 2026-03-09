@@ -1,0 +1,6 @@
+# Redirect www to non-www (Canonical URL)
+https://www.schaden-check24.de/* https://schaden-check24.de/:splat 301!
+http://www.schaden-check24.de/* https://schaden-check24.de/:splat 301!
+
+# Redirect http to https
+http://schaden-check24.de/* https://schaden-check24.de/:splat 301!

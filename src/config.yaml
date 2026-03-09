@@ -1,0 +1,74 @@
+site:
+  name: KFZ Gutachter Remscheid & KFZ Sachverständiger Unfallgutachten bei SchadenCheck
+  site: 'https://schaden-check24.de'
+  base: '/'
+  trailingSlash: true
+
+  googleSiteVerificationId: null # Add your Google Site Verification ID here
+
+# Default SEO metadata
+metadata:
+  title:
+    default: KFZ Gutachter Remscheid & KFZ Sachverständiger Unfallgutachten bei SchadenCheck
+    template: '%s'
+  description: 'KFZ Gutachter & Sachverständiger Remscheid. Kostenloses Unfallgutachten bei Haftpflichtschäden. Vor-Ort-Begutachtung in 24-48h. Unabhängig & rechtssicher.'
+  robots:
+    index: true
+    follow: true
+  openGraph:
+    site_name: KFZ Gutachter Remscheid & KFZ Sachverständiger Unfallgutachten bei SchadenCheck
+    images:
+      - url: '~/assets/images/logo-social.webp'
+        width: 1200
+        height: 630
+    type: website
+  twitter:
+    handle: '@SchadenCheck'
+    site: '@SchadenCheck'
+    cardType: summary_large_image
+
+i18n:
+  language: de
+  textDirection: ltr
+
+apps:
+  blog:
+    isEnabled: true
+    postsPerPage: 6
+
+    post:
+      isEnabled: true
+      permalink: '/blog/%slug%'
+      robots:
+        index: true
+        follow: true
+
+    list:
+      isEnabled: true
+      pathname: 'blog'
+      robots:
+        index: true
+        follow: true
+
+    category:
+      isEnabled: false
+      pathname: 'category'
+      robots:
+        index: false
+
+    tag:
+      isEnabled: false
+      pathname: 'tag'
+      robots:
+        index: false
+
+    isRelatedPostsEnabled: false
+    relatedPostsCount: 0
+
+analytics:
+  vendors:
+    googleAnalytics:
+      id: null # Add your GA4 ID here (e.g., "G-XXXXXXXXXX")
+
+ui:
+  theme: 'light:only' # Only light theme for professional appearance
