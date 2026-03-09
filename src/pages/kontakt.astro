@@ -3,6 +3,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import Headline from '~/components/ui/Headline.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import { testimonials } from '~/data/testimonials';
+import { getPermalink } from '~/utils/permalinks';
 
 const metadata = {
   title: 'Kontakt | KFZ Gutachter Remscheid & KFZ Sachverständiger Unfallgutachten bei SchadenCheck',
@@ -196,7 +197,7 @@ const metadata = {
             </div>
             <div class="ml-3">
               <label for="dsgvo" class="text-sm text-gray-700 dark:text-gray-300">
-                Ich habe die <a href="/datenschutz/" class="text-brand underline hover:text-highlight"
+                Ich habe die <a href={getPermalink('/datenschutz/')} class="text-brand underline hover:text-highlight"
                   >Datenschutzerklärung</a
                 > gelesen. <span class="text-red-600">*</span>
               </label>

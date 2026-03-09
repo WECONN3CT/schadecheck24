@@ -5,6 +5,7 @@ import Features3 from '~/components/widgets/Features3.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import { testimonials } from '~/data/testimonials';
+import { getPermalink } from '~/utils/permalinks';
 
 const metadata = {
   title: 'Schadensgutachten Kfz-Sachverständiger Remscheid',
@@ -362,7 +363,7 @@ const metadata = {
   <section class="py-8 bg-white dark:bg-slate-900">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
       <a
-        href="/leistungen/"
+        href={getPermalink('/leistungen/')}
         class="inline-flex items-center text-brand hover:text-[#7DD3E8] font-semibold transition-colors group"
       >
         <svg class="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

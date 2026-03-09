@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getPermalink } from '~/utils/permalinks';
 
 const allPosts = await getCollection('post');
 const publishedPosts = allPosts
@@ -79,7 +80,7 @@ function formatDate(date: Date | undefined) {
             {publishedPosts.map((post) => (
               <article class="bg-white dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
                 {post.data.image && (
-                  <a href={`/blog/${post.id}/`} class="block aspect-video overflow-hidden">
+                  <a href={getPermalink(`/blog/${post.id}/`)} class="block aspect-video overflow-hidden">
                     <img
                       src={post.data.image}
                       alt={post.data.title}
@@ -99,7 +100,7 @@ function formatDate(date: Date | undefined) {
                   )}
 
                   <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">
-                    <a href={`/blog/${post.id}/`} class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                    <a href={getPermalink(`/blog/${post.id}/`)} class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
                       {post.data.title}
                     </a>
                   </h3>
@@ -113,7 +114,7 @@ function formatDate(date: Date | undefined) {
                       {formatDate(post.data.publishDate)}
                     </time>
                     <a
-                      href={`/blog/${post.id}/`}
+                      href={getPermalink(`/blog/${post.id}/`)}
                       class="text-primary-600 dark:text-primary-400 hover:underline font-semibold"
                       aria-label={`Artikel lesen: ${post.data.title}`}
                     >
@@ -137,12 +138,12 @@ function formatDate(date: Date | undefined) {
       {
         variant: 'primary',
         text: 'Jetzt Schaden melden',
-        href: '/schaden-melden/',
+        href: getPermalink('/schaden-melden/'),
       },
       {
         variant: 'secondary',
         text: 'Mehr zu unseren Leistungen',
-        href: '/leistungen/',
+        href: getPermalink('/leistungen/'),
       },
     ]}
   />

@@ -1,6 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import { Image } from 'astro:assets';
+import { getPermalink } from '~/utils/permalinks';
 
 const metadata = {
   title: 'Kfz-Gutachten & Leistungen Remscheid',
@@ -51,7 +52,7 @@ const metadata = {
             Bei kleineren Schäden oder Parkremplern ist oft kein umfangreiches Gutachten nötig.
             Unser Kurzgutachten liefert eine schnelle, kompakte und kosteneffiziente Einschätzung – ideal zur Vorlage bei Versicherungen, Werkstätten oder für die private Dokumentation.
           </p>
-          <a href="/kurzgutachten/" class="inline-flex items-center text-brand hover:text-[#7DD3E8] font-semibold transition-colors group">
+          <a href={getPermalink('/kurzgutachten/')} class="inline-flex items-center text-brand hover:text-[#7DD3E8] font-semibold transition-colors group">
             Zur Leistung
             <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
@@ -71,7 +72,7 @@ const metadata = {
             Ein Wertgutachten bestimmt den tatsächlichen Marktwert Ihres Fahrzeugs – unabhängig, transparent und nachvollziehbar.
             Wir berücksichtigen Zustand, Laufleistung, Sonderausstattung und aktuelle Marktsituation. Ideal für Verkauf, Leasingrückgabe oder Versicherungseinstufung.
           </p>
-          <a href="/wertgutachten/" class="inline-flex items-center text-brand hover:text-[#7DD3E8] font-semibold transition-colors group">
+          <a href={getPermalink('/wertgutachten/')} class="inline-flex items-center text-brand hover:text-[#7DD3E8] font-semibold transition-colors group">
             Zur Leistung
             <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
@@ -91,7 +92,7 @@ const metadata = {
             Wenn es auf Beweise ankommt, zählt Genauigkeit.
             Unser Beweissicherungsgutachten dokumentiert Schäden, Mängel oder Reparaturfehler neutral und gerichtsfest – optimal bei technischen Streitfällen, verdeckten Mängeln oder Auseinandersetzungen mit Händlern und Werkstätten.
           </p>
-          <a href="/beweissicherungsgutachten/" class="inline-flex items-center text-brand hover:text-[#7DD3E8] font-semibold transition-colors group">
+          <a href={getPermalink('/beweissicherungsgutachten/')} class="inline-flex items-center text-brand hover:text-[#7DD3E8] font-semibold transition-colors group">
             Zur Leistung
             <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
@@ -111,7 +112,7 @@ const metadata = {
             Ein Schadensgutachten kommt immer dann zum Einsatz, wenn Schäden oder Mängel präzise bewertet werden müssen – nicht nur nach einem Unfall.
             Ob verdeckte Defekte, Streit mit einer Werkstatt oder technische Auffälligkeiten: Wir schaffen klare Fakten statt Vermutungen, damit Sie fundierte Entscheidungen treffen oder Ansprüche beweisen können.
           </p>
-          <a href="/schadensgutachten/" class="inline-flex items-center text-brand hover:text-[#7DD3E8] font-semibold transition-colors group">
+          <a href={getPermalink('/schadensgutachten/')} class="inline-flex items-center text-brand hover:text-[#7DD3E8] font-semibold transition-colors group">
             Zur Leistung
             <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
@@ -131,7 +132,7 @@ const metadata = {
             Nach einem unverschuldeten Verkehrsunfall ist das Haftpflichtgutachten Ihr stärkstes Beweismittel.
             Wir erfassen den Schaden neutral, erstellen eine gerichtsfeste Dokumentation und sichern Ihre Ansprüche auf Reparatur, Nutzungsausfall, Wertminderung und alle weiteren Folgekosten ab.
           </p>
-          <a href="/haftpflichtgutachten/" class="inline-flex items-center text-brand hover:text-[#7DD3E8] font-semibold transition-colors group">
+          <a href={getPermalink('/haftpflichtgutachten/')} class="inline-flex items-center text-brand hover:text-[#7DD3E8] font-semibold transition-colors group">
             Zur Leistung
             <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
@@ -152,7 +153,7 @@ const metadata = {
             Wir dokumentieren den Schaden umfassend, erfassen alle relevanten Werte und sorgen dafür, dass Reparatur, Wertminderung und Nutzungsausfall korrekt berücksichtigt werden.
             So erhalten Sie genau das, was Ihnen nach dem Gesetz zusteht.
           </p>
-          <a href="/kfz-unfallgutachten/" class="inline-flex items-center text-brand hover:text-[#7DD3E8] font-semibold transition-colors group">
+          <a href={getPermalink('/kfz-unfallgutachten/')} class="inline-flex items-center text-brand hover:text-[#7DD3E8] font-semibold transition-colors group">
             Zur Leistung
             <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>

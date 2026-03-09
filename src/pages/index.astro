@@ -10,6 +10,7 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 import BeforeAfterSlider from '~/components/widgets/BeforeAfterSlider.astro';
 import { Image } from 'astro:assets';
 import { testimonials } from '~/data/testimonials';
+import { getPermalink } from '~/utils/permalinks';
 
 import beforeImage from '~/assets/images/slider - crashed to fixed/unfallschaden.webp';
 import afterImage from '~/assets/images/slider - crashed to fixed/repariert.webp';
@@ -236,7 +237,7 @@ const metadata = {
               </h3>
               <p class="text-sm text-white/90">
                 Selbst nach einer fachgerechten Reparatur bleibt ein Unfallschaden wertmindernd. Diese Differenz wird
-                Ihnen als <a href="/blog/wertminderung-nach-unfall/" class="underline hover:text-highlight">merkantile Wertminderung</a> ausgezahlt – und zwar zusätzlich zur Reparatur.
+                Ihnen als <a href={getPermalink('/blog/wertminderung-nach-unfall/')} class="underline hover:text-highlight">merkantile Wertminderung</a> ausgezahlt – und zwar zusätzlich zur Reparatur.
               </p>
             </div>
           </div>
@@ -440,7 +441,7 @@ const metadata = {
           </h2>
           <p class="text-lg text-gray-700 dark:text-gray-300 mb-8">
             Ein professionelles Kfz-Gutachten liefert eine umfassende Grundlage für deine Ansprüche gegenüber der
-            Versicherung. Hier siehst du, was ein vollständiges <a href="/kfz-unfallgutachten/" class="text-brand underline hover:text-highlight">Unfallgutachten</a> von SchadenCheck beinhaltet:
+            Versicherung. Hier siehst du, was ein vollständiges <a href={getPermalink('/kfz-unfallgutachten/')} class="text-brand underline hover:text-highlight">Unfallgutachten</a> von SchadenCheck beinhaltet:
           </p>
 
           <!-- Feature List -->
@@ -559,7 +560,7 @@ const metadata = {
             WhatsApp starten
           </a>
           <a
-            href="/schaden-melden/"
+            href={getPermalink('/schaden-melden/')}
             class="btn-primary-brand inline-flex items-center py-3.5 sm:py-4 px-6 rounded-xl min-h-[52px] sm:min-h-[56px]"
             data-analytics="form_click"
           >

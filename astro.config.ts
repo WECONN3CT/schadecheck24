@@ -23,7 +23,8 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 
 export default defineConfig({
   output: 'static',
-  site: 'https://schaden-check24.de',
+  site: 'https://weconn3ct.github.io',
+  base: '/schadecheck24',
   trailingSlash: 'always',
 
   integrations: [

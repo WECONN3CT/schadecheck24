@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import Layout from '~/layouts/PageLayout.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getPermalink } from '~/utils/permalinks';
 
 export async function getStaticPaths() {
   const posts = await getCollection('post');
@@ -49,7 +50,7 @@ const metadata = {
     <header class="mb-8">
       <div class="mb-4">
         <a
-          href="/blog/"
+          href={getPermalink('/blog/')}
           class="inline-flex items-center text-primary-600 dark:text-primary-400 hover:underline font-semibold"
         >
           ← Zurück zum Blog
@@ -136,12 +137,12 @@ const metadata = {
       {
         variant: 'primary',
         text: 'Jetzt Schaden melden',
-        href: '/schaden-melden/',
+        href: getPermalink('/schaden-melden/'),
       },
       {
         variant: 'secondary',
         text: 'Mehr zu unseren Leistungen',
-        href: '/leistungen/',
+        href: getPermalink('/leistungen/'),
       },
     ]}
   />
