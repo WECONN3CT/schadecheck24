@@ -1,7 +1,7 @@
 site:
   name: KFZ Gutachter Remscheid & KFZ Sachverständiger Unfallgutachten bei SchadenCheck
-  site: 'https://schaden-check24.de'
-  base: '/'
+  site: 'https://weconn3ct.github.io'
+  base: '/schadecheck24'
   trailingSlash: true
 
   googleSiteVerificationId: null # Add your Google Site Verification ID here
