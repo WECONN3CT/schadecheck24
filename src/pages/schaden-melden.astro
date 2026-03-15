@@ -252,12 +252,7 @@ const metadata = {
             <div class="ml-3">
               <h3 class="text-lg font-semibold text-green-800 dark:text-green-200">Vielen Dank!</h3>
               <p class="mt-2 text-sm text-green-700 dark:text-green-300">
-                Vielen Dank! Das Online-Formular wird gerade umgestellt. Bitte kontaktieren Sie uns direkt:
-              </p>
-              <p class="mt-2 text-sm text-green-700 dark:text-green-300">
-                <strong>Telefon:</strong> <a href="tel:+4921917932020" class="underline font-semibold">+49 2191 7932020</a>
-                <br><strong>WhatsApp:</strong> <a href="https://wa.me/4921917932020" class="underline font-semibold" target="_blank">Nachricht senden</a>
-                <br><strong>E-Mail:</strong> <a href="mailto:info@schaden-check24.de" class="underline font-semibold">info@schaden-check24.de</a>
+                Ihre Schadensmeldung wurde erfolgreich übermittelt. Wir melden uns schnellstmöglich bei Ihnen – in der Regel innerhalb von 24 Stunden.
               </p>
             </div>
           </div>
@@ -436,161 +431,101 @@ const metadata = {
   </section>
 
   <script>
-    // Form handling
-    const form = document.getElementById('schaden-form') as HTMLFormElement;
-    const successMessage = document.getElementById('success-message');
-    const errorMessage = document.getElementById('error-message');
-    const emailField = document.getElementById('email-field');
+    function initSchadenForm() {
+      const form = document.getElementById('schaden-form') as HTMLFormElement;
+      if (!form) return;
 
-    // Show/hide email field based on contact preference
-    const emailRadio = document.getElementById('kontakt-email') as HTMLInputElement;
-    const kontaktwegRadios = document.querySelectorAll('input[name="kontaktweg"]');
+      const successMessage = document.getElementById('success-message');
+      const errorMessage = document.getElementById('error-message');
+      const emailField = document.getElementById('email-field');
 
-    kontaktwegRadios.forEach((radio) => {
-      radio.addEventListener('change', (e) => {
-        const target = e.target as HTMLInputElement;
-        if (target.value === 'email') {
-          emailField?.classList.remove('hidden');
-          (document.getElementById('email') as HTMLInputElement).required = true;
-        } else {
-          emailField?.classList.add('hidden');
-          (document.getElementById('email') as HTMLInputElement).required = false;
+      // Show/hide email field based on contact preference
+      const kontaktwegRadios = document.querySelectorAll('input[name="kontaktweg"]');
+
+      kontaktwegRadios.forEach((radio) => {
+        radio.addEventListener('change', (e) => {
+          const target = e.target as HTMLInputElement;
+          if (target.value === 'email') {
+            emailField?.classList.remove('hidden');
+            (document.getElementById('email') as HTMLInputElement).required = true;
+          } else {
+            emailField?.classList.add('hidden');
+            (document.getElementById('email') as HTMLInputElement).required = false;
+          }
+        });
+      });
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        successMessage?.classList.add('hidden');
+        errorMessage?.classList.add('hidden');
+
+        const submitButton = form.querySelector(
+          'button[type="submit"]'
+        ) as HTMLButtonElement;
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = 'Wird gesendet...';
+        }
+
+        try {
+          const formDataObj = new FormData(form);
+
+          const data = {
+            name: formDataObj.get('name'),
+            telefon: formDataObj.get('telefon'),
+            plz: formDataObj.get('plz'),
+            ort: formDataObj.get('ort'),
+            kontaktweg: formDataObj.get('kontaktweg'),
+            email: formDataObj.get('email'),
+            emailBestaetigung: formDataObj.get('email-bestaetigung'),
+            beschreibung: formDataObj.get('beschreibung'),
+            dsgvo: formDataObj.get('dsgvo') === 'on',
+          };
+
+          const response = await fetch('https://formspree.io/f/xnjgblwb', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(data),
+          });
+
+          if (!response.ok) {
+            throw new Error('Formular konnte nicht gesendet werden.');
+          }
+
+          successMessage?.classList.remove('hidden');
+          form.reset();
+
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Schaden jetzt melden';
+          }
+
+          successMessage?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+          });
+        } catch (error) {
+          console.error('Network error:', error);
+
+          errorMessage?.classList.remove('hidden');
+
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Schaden jetzt melden';
+          }
+
+          errorMessage?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+          });
         }
       });
-    });
+    }
 
-    // File upload validation (DEAKTIVIERT)
-    /*
-    const fileInput = document.getElementById('dateien') as HTMLInputElement;
-    fileInput?.addEventListener('change', (e) => {
-      const target = e.target as HTMLInputElement;
-      if (target.files && target.files.length > 8) {
-        alert('Bitte wählen Sie maximal 8 Dateien aus.');
-        target.value = '';
-        return;
-      }
-
-      // Check total file size (max 8MB total to stay within Cloudflare limits)
-      if (target.files) {
-        let totalSize = 0;
-        for (let i = 0; i < target.files.length; i++) {
-          totalSize += target.files[i].size;
-        }
-        const maxSize = 8 * 1024 * 1024; // 8MB in bytes (safe for Cloudflare Pages)
-        if (totalSize > maxSize) {
-          alert('Die Gesamtgröße aller Dateien darf 8MB nicht überschreiten. Bitte wählen Sie kleinere Dateien oder weniger Dateien.');
-          target.value = '';
-        }
-      }
-    });
-    */
-
-    // Form submission with Cloudflare Worker Backend
-    form?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      // Hide previous messages
-      successMessage?.classList.add('hidden');
-      errorMessage?.classList.add('hidden');
-
-      // Disable submit button (UX)
-      const submitButton = form.querySelector(
-        'button[type="submit"]'
-      ) as HTMLButtonElement;
-      if (submitButton) {
-        submitButton.disabled = true;
-        submitButton.textContent = 'Wird gesendet...';
-      }
-
-      try {
-        // Collect form data
-        const formDataObj = new FormData(form);
-
-        // File uploads DEAKTIVIERT - für spätere Verwendung
-        /*
-        const files = fileInput?.files;
-        const attachments: Array<{ filename: string; content: string; type: string }> = [];
-
-        if (files && files.length > 0) {
-          if (submitButton) {
-            submitButton.textContent = 'Dateien werden verarbeitet...';
-          }
-
-          for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            try {
-              const base64 = await new Promise<string>((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = () => {
-                  const result = reader.result as string;
-                  const base64Content = result.split(',')[1];
-                  resolve(base64Content);
-                };
-                reader.onerror = reject;
-                reader.readAsDataURL(file);
-              });
-
-              attachments.push({
-                filename: file.name,
-                content: base64,
-                type: file.type,
-              });
-            } catch (fileError) {
-              console.error('Error processing file:', file.name, fileError);
-            }
-          }
-
-          if (submitButton) {
-            submitButton.textContent = 'Wird gesendet...';
-          }
-        }
-        */
-
-        const data = {
-          name: formDataObj.get('name'),
-          telefon: formDataObj.get('telefon'),
-          plz: formDataObj.get('plz'),
-          ort: formDataObj.get('ort'),
-          kontaktweg: formDataObj.get('kontaktweg'),
-          email: formDataObj.get('email'),
-          emailBestaetigung: formDataObj.get('email-bestaetigung'), // Optional confirmation email
-          beschreibung: formDataObj.get('beschreibung'),
-          dsgvo: formDataObj.get('dsgvo') === 'on',
-          // attachments: attachments.length > 0 ? attachments : undefined, // DEAKTIVIERT
-        };
-
-        // TODO: Formspree-Integration hier einbauen
-        // Aktuell deaktiviert - Nutzer wird auf Telefon/WhatsApp/E-Mail verwiesen
-        successMessage?.classList.remove('hidden');
-        form.reset();
-
-        // Reset button
-        if (submitButton) {
-          submitButton.disabled = false;
-          submitButton.textContent = 'Schaden jetzt melden';
-        }
-
-        successMessage?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center',
-        });
-      } catch (error) {
-        console.error('Network error:', error);
-
-        // Show error message
-        errorMessage?.classList.remove('hidden');
-
-        // Reset button
-        if (submitButton) {
-          submitButton.disabled = false;
-          submitButton.textContent = 'Schaden jetzt melden';
-        }
-
-        errorMessage?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center',
-        });
-      }
-    });
+    // Run on initial load and after each View Transition navigation
+    initSchadenForm();
+    document.addEventListener('astro:page-load', initSchadenForm);
   </script>
 </Layout>
