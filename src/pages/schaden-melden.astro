@@ -430,7 +430,14 @@ const metadata = {
     </div>
   </section>
 
+  <script is:inline src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script is:inline>
+    (function() { emailjs.init('F8-ObLhdR40QituD6'); })();
+  </script>
+
   <script>
+    declare const emailjs: any;
+
     function initSchadenForm() {
       const form = document.getElementById('schaden-form') as HTMLFormElement;
       if (!form) return;
@@ -472,27 +479,17 @@ const metadata = {
         try {
           const formDataObj = new FormData(form);
 
-          const data = {
+          const templateParams = {
             name: formDataObj.get('name'),
             telefon: formDataObj.get('telefon'),
             plz: formDataObj.get('plz'),
             ort: formDataObj.get('ort'),
             kontaktweg: formDataObj.get('kontaktweg'),
-            email: formDataObj.get('email'),
-            emailBestaetigung: formDataObj.get('email-bestaetigung'),
-            beschreibung: formDataObj.get('beschreibung'),
-            dsgvo: formDataObj.get('dsgvo') === 'on',
+            email: formDataObj.get('email') || formDataObj.get('email-bestaetigung') || '',
+            beschreibung: formDataObj.get('beschreibung') || '',
           };
 
-          const response = await fetch('https://formspree.io/f/xnjgblwb', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify(data),
-          });
-
-          if (!response.ok) {
-            throw new Error('Formular konnte nicht gesendet werden.');
-          }
+          await emailjs.send('service_zxis7xd', 'template_ylbrteq', templateParams);
 
           successMessage?.classList.remove('hidden');
           form.reset();
