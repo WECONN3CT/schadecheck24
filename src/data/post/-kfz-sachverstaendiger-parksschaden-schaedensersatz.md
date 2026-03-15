@@ -99,11 +99,11 @@ metadata:
 <li><strong>Kann ich mehrere Gutachter beauftragen?</strong> <br>Ja, Sie haben das Recht auf einen freien KFZ Sachverständigen.</li>
 </ul>
 <p><strong>Sie haben Fragen zum Ablauf, zu Kosten oder suchen direkt einen Termin? Fordern Sie noch heute Ihr Gutachten bei SchadenCheck an!</strong></p>
-<p><a href="/schadecheck24/kontakt/">Jetzt Gutachten anfragen</a> – Wir beraten Sie kostenlos und unabhängig.</p>
+<p><a href="/kontakt/">Jetzt Gutachten anfragen</a> – Wir beraten Sie kostenlos und unabhängig.</p>
 <h2>Interne weiterführende Links für Sie:</h2>
 <ul>
-<li><a href="/schadecheck24/blog/verhalten-nach-autounfall/">Verhalten nach Autounfall – Ratgeber</a></li>
-<li><a href="/schadecheck24/blog/wertminderung-nach-unfall/">Wertminderung nach Unfall geltend machen</a></li>
+<li><a href="/blog/verhalten-nach-autounfall/">Verhalten nach Autounfall – Ratgeber</a></li>
+<li><a href="/blog/wertminderung-nach-unfall/">Wertminderung nach Unfall geltend machen</a></li>
 </ul>
 <h2>Quellen und weiterführende Informationen:</h2>
 <ul>
